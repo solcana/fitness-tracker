@@ -4,9 +4,23 @@ const stepsRoute = require('./routes/steps'); // Require Steps Module
 
 
 
+const express = require('express');
+const mongoose = require('mongoose');
 
+const app = express();
 
+// Connect to MongoDB database
+mongoose.connect('mongodb://localhost/your_database', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('Connected to MongoDB');
+});
 
 
 
@@ -30,3 +44,10 @@ app.listen(3000, () => {
 });
 
  *  */ 
+
+
+// ... the rest of our Express application code
+
+app.listen(3000, () => {
+  console.log('Express server started on port 3000');
+});
