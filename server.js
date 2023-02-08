@@ -3,8 +3,6 @@ const app = express();
 const stepsRoute = require('./routes/steps'); // Require Steps Module
 const mongoose = require('mongoose');
 
-const app = express();
-
 // Connect to MongoDB database
 mongoose.connect('mongodb://localhost/your_database', {
   useNewUrlParser: true,
