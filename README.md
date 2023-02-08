@@ -37,3 +37,6 @@
 - [ ] As a user I want to be able to add in the reps for each exercise, so that I can keep track of my progress
 - [ ] As a user I want to be able to finish the workout, so that all my exercises are saved to my history
 
+#### ERD
+
+![Entity Relationship Diagram](/assets/Images/ERD.png)
