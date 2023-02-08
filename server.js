@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const stepsRoute = require('./routes/steps'); // Require Steps Module
 const mongoose = require('mongoose');
 
 // Connect to MongoDB database
