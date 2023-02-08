@@ -1,10 +1,6 @@
 const express = require('express');
 const app = express();
 const stepsRoute = require('./routes/steps'); // Require Steps Module
-
-
-
-const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
