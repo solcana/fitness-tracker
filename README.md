@@ -12,6 +12,16 @@
 
 1. Login page (authentication happens) 2. Profile Page / Dashboard (once logged in) 3. Workout Page (MODEL e.g. type of exercise: string, reps: number, weight: number .....) 4. General Blog/Article Page (e.g. food, workout tips etc.) - Weight, water, calories intake, body measurements (MODEL e.g. weight: number, calories: number .....)
 
+
+#### Wireframes
+
+![Wireframe for Login](/assets/Images/Login%20Page.png)
+
+![Wireframe for Profile/Dashboard](/assets/Images/Profile_Dashboard.png)
+
+![Wireframe for Exercise Page](/assets/Images/Workout%20Page.png)
+
+
 #### User Stories
 
 - [ ] As a user I want to be able to login, so that I can access my profile
@@ -26,3 +36,4 @@
 - [ ] As a user I want to be able to add in the weight for each exercise, so that I can keep track of my progress
 - [ ] As a user I want to be able to add in the reps for each exercise, so that I can keep track of my progress
 - [ ] As a user I want to be able to finish the workout, so that all my exercises are saved to my history
+
