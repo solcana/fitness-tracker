@@ -10,7 +10,11 @@
 
 #### Wireframing Brainstorming
 
-1. Login page (authentication happens) 2. Profile Page / Dashboard (once logged in) 3. Workout Page (MODEL e.g. type of exercise: string, reps: number, weight: number .....) 4. General Blog/Article Page (e.g. food, workout tips etc.) - Weight, water, calories intake, body measurements (MODEL e.g. weight: number, calories: number .....)
+1. Login page (authentication happens)
+2. Profile Page / Dashboard (once logged in)
+3. Workout Page (MODEL e.g. type of exercise: string, reps: number, weight: number .....)
+4. General Blog/Article Page (e.g. food, workout tips etc.)
+    - Weight, water, calories intake, body measurements (MODEL e.g. weight: number, calories: number .....)
 
 
 #### Wireframes
