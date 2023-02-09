@@ -7,12 +7,16 @@ const db = require("./config/db");
 
 // Connect to MongoDB database
 mongoose.connect(db, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
 });
-mongoose.connection.once("open", () => console.log(`Connection to MongoDB on ${db}`));
+mongoose.connection.once("open", () =>
+	console.log(`Connection to MongoDB on ${db}`)
+);
 
 // Require Route Files
+const exerciseRouter = require("./routes/exerciseRoutes");
+
 const indexRouter = require("./routes/index");
 
 // Instantiate Express Application Object
@@ -27,7 +31,7 @@ const port = process.env.PORT || 5001;
 /** Routes */
 // Mount imported Routers
 app.use(indexRouter);
-
+app.use(exerciseRouter);
 
 // Returns a statement saying the App is listening on our specified port
 app.listen(port, () => console.log(`App is listening on port ${port}`));
