@@ -27,56 +27,25 @@ mongoose.connection.once("open", () => {
   
     // Adding Workout seed data to database
     Workout.insertMany(workoutSeedData, (err, workouts) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('added workout seed data', workouts);
-      }
-  
-      // Adding User seed data to database
-      User.insertMany(userSeedData, (err, users) => {
         if (err) {
-          console.log(err);
+            console.log(err);
         } else {
-          console.log('added user seed data', users);
+            console.log('added workout seed data', workouts);
         }
   
-        mongoose.connection.close();
-      });
+        // Adding User seed data to database
+        User.insertMany(userSeedData, (err, users) => {
+            if (err) {
+            console.log(err);
+            } else {
+            console.log('added user seed data', users);
+            }
+    
+            mongoose.connection.close();
+        });
     });
-  });
+});
 
-
-// mongoose.connection.once("open", () => console.log("Connection to MongoDB"));
-
-
-// /**
-//  * Seed Data inserted below
-//  */
-
-// // Adding Workout seed data to database
-// Workout.insertMany(workoutSeedData, (err, workouts) => {
-// if (err) {
-//     console.log(err);
-// } else {
-//     console.log('added workout seed data', workouts);
-// }
-// // mongoose.connection.close();
-// });
-
-// // Adding User seed data to database
-// User.insertMany(userSeedData, (err, users) => {
-// if (err) {
-//     console.log(err);
-// } else {
-//     console.log('added user seed data', users);
-// }
-// // mongoose.connection.close();
-// });
-
-// mongoose.connection.on('close', () => {
-//     console.log('Connection to MongoDB closed');
-// });
 
 /**
  * Testing individual entries into database
