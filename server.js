@@ -19,4 +19,5 @@ app.use(indexRouter);
 
 const port = process.env.PORT || 5000;
 
+// Returns a statement saying the App is listening on our specified port
 app.listen(port, () => console.log(`App is listening on port ${port}`));
