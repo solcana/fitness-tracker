@@ -1,3 +1,7 @@
+/**
+ * This file is to be run once using `node mountSeed.js` in the terminal to load the seed data into the local database
+ */
+
 // Require necessary NPM Packages
 const mongoose = require("mongoose");
 
