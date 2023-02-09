@@ -17,6 +17,7 @@ mongoose.connection.once("open", () => console.log("Connection to MongoDB"));
 
 // Require Route Files
 const indexRouter = require("./routes/index");
+const User = require("./models/user");
 
 // Routes
 // Mount imported Routers
@@ -47,14 +48,30 @@ const mondayWorkout = {
 
 mondayWorkout.exercises.push(squat);
 
-Workout.create(mondayWorkout, (err, workout) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("added provided exercise data", workout);
-  }
-  mongoose.connection.close();
-});
+const user1 = {
+  firstName: "usman",
+  lastName: "bashir",
+  username: "usbashir",
+  password: "hfghghg",
+};
+
+// User.create(user1, (err, user) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("added provided exercise data", user);
+//   }
+//   mongoose.connection.close();
+// });
+
+// Workout.create(mondayWorkout, (err, workout) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("added provided exercise data", workout);
+//   }
+//   mongoose.connection.close();
+// });
 
 // Returns a statement saying the App is listening on our specified port
 app.listen(port, () => console.log(`App is listening on port ${port}`));
