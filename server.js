@@ -1,7 +1,7 @@
 // Require necessary NPM Packages
 const express = require("express");
 const mongoose = require("mongoose");
-const Exercise = require("./models/exercise");
+const { Workout, Exercise } = require("./models/workout");
 
 const app = express();
 
@@ -30,11 +30,28 @@ const squat = {
   reps: 10,
 };
 
-Exercise.create(squat, (err, exercise) => {
+// Exercise.create(squat, (err, exercise) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("added provided exercise data", exercise);
+//   }
+//   mongoose.connection.close();
+// });
+
+const mondayWorkout = {
+  startDate: Date.now(),
+  completed: true,
+  exercises: [],
+};
+
+mondayWorkout.exercises.push(squat);
+
+Workout.create(mondayWorkout, (err, workout) => {
   if (err) {
     console.log(err);
   } else {
-    console.log("added provided exercise data", exercise);
+    console.log("added provided exercise data", workout);
   }
   mongoose.connection.close();
 });
