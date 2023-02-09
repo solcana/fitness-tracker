@@ -1,22 +1,22 @@
 const mongoose = require("mongoose");
 
 const exerciseSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    weight: { type: Number, required: true },
-    reps: { type: Number, required: true },
-    completed: { type: Boolean, default: false },
-  },
-  { timestamps: true }
+	{
+		name: { type: String, required: true },
+		weight: { type: Number, required: true },
+		reps: { type: Number, required: true },
+		completed: { type: Boolean, default: false },
+	},
+	{ timestamps: true }
 );
 
 const workoutSchema = new mongoose.Schema(
-  {
-    startDate: { type: Date, required: true },
-    completed: { type: Boolean, default: false },
-    exercises: [exerciseSchema],
-  },
-  { timestamps: true }
+	{
+		startDate: String,
+		completed: { type: Boolean, default: false },
+		exercises: [exerciseSchema],
+	},
+	{ timestamps: true }
 );
 
 // Compile our Model based on the Schema
