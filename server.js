@@ -2,6 +2,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { Workout, Exercise } = require("./models/workout");
+const workoutSeedData = require('./seedData/workoutSeed');
+const userSeedData = require("./seedData/userSeed");
 
 const app = express();
 
@@ -41,7 +43,7 @@ const squat = {
 // });
 
 const mondayWorkout = {
-  startDate: Date.now(),
+  startDate: new Date(2000, 01, 12, 14, 33, 12),
   completed: true,
   exercises: [],
 };
@@ -70,6 +72,22 @@ const user1 = {
 //   } else {
 //     console.log("added provided exercise data", workout);
 //   }
+//   mongoose.connection.close();
+// });
+
+// Workout.insertMany(workoutSeedData, (err, workouts) => {
+//   if (err) {
+//     console.log(err);
+//   }
+//   console.log('added workout seed data', workouts);
+//   mongoose.connection.close();
+// });
+
+// User.insertMany(userSeedData, (err, users) => {
+//   if (err) {
+//     console.log(err);
+//   }
+//   console.log('added user seed data', users);
 //   mongoose.connection.close();
 // });
 
