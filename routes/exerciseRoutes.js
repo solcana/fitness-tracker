@@ -37,9 +37,9 @@ router.get("/api/workout/:id", (req, res) => {
 	//use the Articles model imported above
 	Workout.findById(req.params.id)
 		//return an articles as an array
-		.then((workouts) => {
-			if (workouts) {
-				res.status(200).json({ workouts: workouts });
+		.then((workout) => {
+			if (workout) {
+				res.status(200).json({ workout: workout });
 			} else {
 				//If we couldn't find a document with the matching ID
 				res.status(404).json({
@@ -64,10 +64,10 @@ router.get("/api/workout/:id", (req, res) => {
  */
 router.delete("/api/workout/:id", (req, res) => {
 	Workout.findById(req.params.id)
-		.then((workouts) => {
-			if (workouts) {
+		.then((workout) => {
+			if (workout) {
 				//Pass the result of Mongoose's .remove method to the next promise on the '.then' chain
-				return workouts.remove();
+				return workout.remove();
 			} else {
 				//If we couldn't find a document with the matching ID
 				res.status(404).json({
@@ -96,10 +96,10 @@ router.delete("/api/workout/:id", (req, res) => {
  */
 router.patch("/api/workout/:id", (req, res) => {
 	Workout.findById(req.params.id)
-		.then((workouts) => {
-			if (workouts) {
+		.then((workout) => {
+			if (workout) {
 				//Pass the result of Mongooses `.update` method to the next `.then` on the promise chain
-				return workouts.update(req.body.workouts);
+				return workout.update(req.body.workout);
 			} else {
 				//If we couldn't find a document with the matching ID
 				res.status(404).json({
@@ -113,6 +113,25 @@ router.patch("/api/workout/:id", (req, res) => {
 		.then(() => {
 			//If the update succeeded, return 204(no content) and no JSON
 			res.status(204).end();
+		})
+		// catch any errors that might occur
+		.catch((error) => {
+			res.status(500).json({ error: error });
+		});
+});
+
+/**
+ * Action:          CREATE
+ *  Method:         POST
+ * URI:            /api/articles
+ * Description:    Create a new Article
+ */
+router.post("/api/workout", (req, res) => {
+	Workout.create(req.body.workout)
+		// On a successful `creat` action. respond with 201
+		//HTTP status and the content of the new workout
+		.then((newWorkout) => {
+			res.status(201).json({ workout: newWorkout });
 		})
 		// catch any errors that might occur
 		.catch((error) => {
