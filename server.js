@@ -1,14 +1,19 @@
 // Require necessary NPM Packages
 const express = require("express");
 const mongoose = require("mongoose");
+const Exercise = require("./models/exercise");
 
 const app = express();
 
+// Require DB Configuration File
+const db = require("./config/db");
+
 // Connect to MongoDB database
-mongoose.connect("mongodb://localhost/your_database", {
+mongoose.connect(db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+mongoose.connection.once("open", () => console.log("Connection to MongoDB"));
 
 // Require Route Files
 const indexRouter = require("./routes/index");
@@ -18,6 +23,21 @@ const indexRouter = require("./routes/index");
 app.use(indexRouter);
 
 const port = process.env.PORT || 5001;
+
+const squat = {
+  name: "Squat",
+  weight: 10,
+  reps: 10,
+};
+
+Exercise.create(squat, (err, exercise) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("added provided exercise data", exercise);
+  }
+  mongoose.connection.close();
+});
 
 // Returns a statement saying the App is listening on our specified port
 app.listen(port, () => console.log(`App is listening on port ${port}`));
