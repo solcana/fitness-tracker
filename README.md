@@ -4,9 +4,9 @@
 
 ### Project requirements for Wednesday 8th Lunchtime
 
-- [ ] Wireframes
-- [ ] User Stories
-- [ ] Entity Relationship Diagram (ERD)
+- [x] Wireframes
+- [x] User Stories
+- [x] Entity Relationship Diagram (ERD)
 
 #### Wireframing Brainstorming
 
