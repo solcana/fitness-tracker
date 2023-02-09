@@ -17,7 +17,7 @@ const indexRouter = require("./routes/index");
 // Mount imported Routers
 app.use(indexRouter);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 // Returns a statement saying the App is listening on our specified port
 app.listen(port, () => console.log(`App is listening on port ${port}`));
