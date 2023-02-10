@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import NavBar from './components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Exercise from './components/Exercise';
-
+import Profile from './pages/Profile';
+import { Route, Routes } from "react-router-dom";
+import Workout from './pages/Workout';
 
 class App extends Component {
     state = {  } 
     render() { 
         return (
             <>
-            <NavBar />
-            <Exercise />
-            <h1>Hello</h1>
+                <NavBar />
+                <Routes>
+                    {/* <Route exact path="/" element={<Login />} /> */}
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/workout" element={<Workout />} />
+                </Routes>
             </>
         );
     }
