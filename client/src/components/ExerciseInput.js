@@ -4,11 +4,9 @@ import React, { Component } from 'react';
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 
 class ExerciseInput extends Component {
-    state = {  } 
     render() { 
         return (
             <>
-                <h4>Exercise</h4>
                 <Container>
                     <Form>
                         <Row className="align-items-center">
@@ -43,7 +41,7 @@ class ExerciseInput extends Component {
                                 </InputGroup>
                             </Col>
                             <Col xs="auto" className="my-1">
-                            <Button type="submit">Submit</Button>
+                                <Button type="submit">Submit</Button>
                             </Col>
                         </Row>
                     </Form>
