@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
-import Exercise from "../components/Exercise";
+import ExerciseInput from "../components/ExerciseInput";
 
 class Workout extends Component {
     render() {
         return(
             <Container>
                 <h3>Workout Page</h3>
-                <Exercise />
+                <ExerciseInput />
             </Container>
         );
     }
