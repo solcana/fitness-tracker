@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Profile from "./pages/Profile";
 import { Route, Routes } from "react-router-dom";
 import Workout from "./pages/Workout";
+
 import ProfilePicture from "./components/ProfilePicture";
 import usman_pic from "./userImage/usman_pic.png";
 
