@@ -11,7 +11,7 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/profile">Profile</Nav.Link>
-            <Nav.Link href="/workouts">Workouts</Nav.Link>
+            <Nav.Link href="/workout">Workout</Nav.Link>
           </Nav>
           <Navbar.Text>
             Signed in as: <a href="#login">Usman's Gainz</a>
