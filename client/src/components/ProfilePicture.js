@@ -16,7 +16,7 @@ class ProfilePicture extends Component {
 		return (
 			<div
 				style={{
-					backgroundColor: "hotPink",
+					// backgroundColor: "hotPink",
 					height: "270px",
 					width: "100%",
 					position: "fixed",
