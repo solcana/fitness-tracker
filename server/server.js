@@ -15,9 +15,9 @@ mongoose.connection.once("open", () =>
 );
 
 // Require Route Files
-const exerciseRouter = require("./routes/exerciseRoutes");
+const exerciseRouter = require("../server/routes/exerciseRoutes");
 
-const indexRouter = require("./routes/index");
+const indexRouter = require("../server/routes/index");
 
 // Instantiate Express Application Object
 const app = express();
