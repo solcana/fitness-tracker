@@ -16,6 +16,7 @@ class App extends Component {
           {/* <Route exact path="/" element={<Login />} /> */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/workout" element={<Workout />} />
+          <Route path="/graph-statistics" element={<GraphStatistics />} />
         </Routes>
       </>
     );
