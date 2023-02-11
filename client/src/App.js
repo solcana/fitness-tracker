@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Profile from "./pages/Profile";
 import { Route, Routes } from "react-router-dom";
 import Workout from "./pages/Workout";
+import GraphStatistics from "./components/GraphStatistics";
 
 class App extends Component {
   state = {};
