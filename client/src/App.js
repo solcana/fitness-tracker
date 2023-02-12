@@ -4,9 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Profile from "./pages/Profile";
 import { Route, Routes } from "react-router-dom";
 import Workout from "./pages/Workout";
-
-import ProfilePicture from "./components/ProfilePicture";
-import usman_pic from "./userImage/usman_pic.png";
+import GraphStatistics from "./components/GraphStatistics";
 
 class App extends Component {
 	state = {};
@@ -24,17 +22,13 @@ class App extends Component {
 						path="/workout"
 						element={<Workout />}
 					/>
+					<Route
+						path="/graph-statistics"
+						element={<GraphStatistics />}
+					/>
 				</Routes>
-				<ProfilePicture
-					src={usman_pic}
-					alt="Usman"
-					username="Us-Dawg"
-					totalWorkouts={1000}
-					workoutsThisWeek={5}
-				/>
 			</>
 		);
 	}
 }
-
 export default App;
