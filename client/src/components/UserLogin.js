@@ -36,13 +36,14 @@ class UserLogin extends Component {
 			.get(`http://localhost:5001/user`)
 			.then((response) => {
 				// Get the user data from the response
-				const users = response.data;
+				const users = response.data.user;
 
 				console.log("Users:", users);
 				// Find the user with the matching username
 				const user = users.find(
-					(user) => users.username === this.state.username
+					(user) => user.username === this.state.username
 				);
+
 				// Check if the user was found
 				if (user) {
 					console.log("User found:", user);
