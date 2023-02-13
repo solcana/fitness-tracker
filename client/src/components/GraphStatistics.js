@@ -1,6 +1,6 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
-//Define the GraphStatistics component as a class component
 class GraphStatistics extends React.Component {
   constructor(props) {
     super(props);
@@ -17,39 +17,45 @@ class GraphStatistics extends React.Component {
     this.setState({
       data: {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      datasets: [
+        datasets: [
           {
             label: 'Workout Intensity',
             data: workoutData,
             borderColor: 'rgba(75,192,192,1)',
             backgroundColor: 'rgba(75,192,192,0.2)',
             fill: true
-        }
+          }
         ]
       }
     });
   }
 
-  // Render the component
   render() {
     return (
-      <div>
-        {/* Render the line graph using the data stored in the component's state */}
-         data={this.state.data}
-         options={{
-           title: {
-              display: true,
-              text: 'Workout History',
-              fontSize: 20
-            },
-            legend: {
-              display: false
-            }
-          }}
-      </div>
+      <Container className="mt-4">
+        <Row>
+          <Col>
+            <div
+              className="p-3 mb-5 bg-white rounded"
+              style={{ height: "500px", border: "1px solid #ccc" }}
+            >
+              {/* Placeholder graph */}
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <h3>Graph will be rendered here</h3>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     );
-}
+  }
 }
 
-// Export the GraphStatistics component
 export default GraphStatistics;
