@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Modal, Form, InputGroup, FormControl } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileSignature, faDumbbell, faHashtag } from '@fortawesome/free-solid-svg-icons';
+import apiUrl from './apiConfig';
+import axios from "axios";
 
 class ExerciseInputModal extends Component {
   constructor(props) {
@@ -16,6 +18,11 @@ class ExerciseInputModal extends Component {
 
   handleShow = () => {
     this.setState({ show: true });
+    console.log(apiUrl + "/workout");
+
+    axios
+        .get(apiUrl + "/workout")
+        .then((res) => console.log(res));
   };
 
   handleClose = () => {
@@ -42,6 +49,36 @@ class ExerciseInputModal extends Component {
     }
 
     this.props.onAddExercise(exercise);
+
+    axios.post(apiUrl + "/workout", {
+        startDate: Date.now(),
+        completed: true,
+        exercises: [
+            {
+                name: "New Squat",
+                weight: 20,
+                reps: 10,
+                completed: true
+            }
+        ]
+    })
+    .then(response => {
+        console.log(response);
+    })
+    .catch(error => {
+        if (error.response) {
+            //response status is an error code
+            console.log(error.response.status);
+        }
+        else if (error.request) {
+            //response not received though the request was sent
+            console.log(error.request);
+        }
+        else {
+            //an error occurred when setting up the request
+            console.log(error.message);
+        }
+    });
 
     this.setState({ show: false });
   };
