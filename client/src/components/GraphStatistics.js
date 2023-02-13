@@ -1,7 +1,6 @@
 import React from 'react';
-import { Line } from 'react-chartjs-2';
 
-// Define the GraphStatistics component as a class component
+//Define the GraphStatistics component as a class component
 class GraphStatistics extends React.Component {
   constructor(props) {
     super(props);
@@ -18,14 +17,14 @@ class GraphStatistics extends React.Component {
     this.setState({
       data: {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        datasets: [
+      datasets: [
           {
             label: 'Workout Intensity',
             data: workoutData,
             borderColor: 'rgba(75,192,192,1)',
             backgroundColor: 'rgba(75,192,192,0.2)',
             fill: true
-          }
+        }
         ]
       }
     });
@@ -36,10 +35,9 @@ class GraphStatistics extends React.Component {
     return (
       <div>
         {/* Render the line graph using the data stored in the component's state */}
-        <Line
-          data={this.state.data}
-          options={{
-            title: {
+         data={this.state.data}
+         options={{
+           title: {
               display: true,
               text: 'Workout History',
               fontSize: 20
@@ -48,10 +46,9 @@ class GraphStatistics extends React.Component {
               display: false
             }
           }}
-        />
       </div>
     );
-  }
+}
 }
 
 // Export the GraphStatistics component
