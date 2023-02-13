@@ -1,6 +1,7 @@
 // Require necessary NPM Packages
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 // Require DB Configuration File
 const db = require("./config/db");
@@ -19,11 +20,19 @@ const exerciseRouter = require("../server/routes/exerciseRoutes");
 
 const indexRouter = require("../server/routes/index");
 
+const userRouter = require("./routes/userRoutes"); //SL here***
+
 // Instantiate Express Application Object
 const app = express();
 
 // Define PORT for the API to run on
 const port = process.env.PORT || 5001;
+const reactPort = 3000;
+
+//Set CORS headers on response from this API using the 'cors' NPM package
+app.use(
+	cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${reactPort}` })
+);
 
 /** Middleware */
 
@@ -35,6 +44,7 @@ app.use(express.json());
 // Mount imported Routers
 app.use(indexRouter);
 app.use(exerciseRouter);
+app.use(userRouter); //SL here ****
 
 // Returns a statement saying the App is listening on our specified port
 app.listen(port, () => console.log(`App is listening on port ${port}`));

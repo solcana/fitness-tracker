@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Workout from "./pages/Workout";
 import GraphStatistics from "./components/GraphStatistics";
 import ProfilePicChanger from "./components/ProfilePicChanger";
+import UserLogin from "./components/UserLogin";
 
 class App extends Component {
 	state = {};
@@ -24,8 +25,16 @@ class App extends Component {
 						element={<Workout />}
 					/>
 					<Route
+						path="/graph-statistics"
+						element={<GraphStatistics />}
+					/>
+					<Route
 						path="/profile-picture"
 						element={<ProfilePicChanger />}
+					/>
+					<Route
+						path="/user"
+						element={<UserLogin />}
 					/>
 				</Routes>
 			</>
