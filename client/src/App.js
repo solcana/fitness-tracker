@@ -5,6 +5,7 @@ import Profile from "./pages/Profile";
 import { Route, Routes } from "react-router-dom";
 import Workout from "./pages/Workout";
 import GraphStatistics from "./components/GraphStatistics";
+import ProfilePicChanger from "./components/ProfilePicChanger";
 
 class App extends Component {
 	state = {};
@@ -21,6 +22,10 @@ class App extends Component {
 					<Route
 						path="/workout"
 						element={<Workout />}
+					/>
+					<Route
+						path="/profile-picture"
+						element={<ProfilePicChanger />}
 					/>
 				</Routes>
 			</>
