@@ -13,7 +13,7 @@ const router = express.Router();
  * URI:            /api/articles
  * Description:    Get All Articles (what the route is going to do)
  */
-router.get("/user", (req, res) => {
+router.get("/api/user", (req, res) => {
 	//use the Articles model imported above
 	User.find()
 		//return all articles as an array
@@ -32,7 +32,7 @@ router.get("/user", (req, res) => {
  * URI:            /api/articles/5d664b8b68b4bjdbjdbj
  * Description:    Get an individual Article by Article ID
  */
-router.get("/user/:id", (req, res) => {
+router.get("/api/user/:id", (req, res) => {
 	//use the Articles model imported above
 	User.findById(req.params.id)
 		//return an articles as an array
@@ -61,7 +61,7 @@ router.get("/user/:id", (req, res) => {
  * URI:            /api/articles/5d664b8b68b4bjdbjdbj
  * Description:    Delete an Article by Article ID
  */
-router.delete("/user/:id", (req, res) => {
+router.delete("/api/user/:id", (req, res) => {
 	User.findById(req.params.id)
 		.then((user) => {
 			if (user) {
@@ -93,7 +93,7 @@ router.delete("/user/:id", (req, res) => {
  * URI:            /api/articles/5d664b8b68b4bjdbjdbj
  * Description:    Update an Article by Article ID
  */
-router.patch("/user/:id", (req, res) => {
+router.patch("/api/user/:id", (req, res) => {
 	User.findById(req.params.id)
 		.then((user) => {
 			if (user) {
@@ -125,7 +125,7 @@ router.patch("/user/:id", (req, res) => {
  * URI:            /api/articles
  * Description:    Create a new Article
  */
-router.post("/user", (req, res) => {
+router.post("/api/user", (req, res) => {
 	User.create(req.body.user)
 		// On a successful `creat` action. respond with 201
 		//HTTP status and the content of the new user
@@ -139,3 +139,5 @@ router.post("/user", (req, res) => {
 });
 
 module.exports = router;
+
+router.post("/api/login", (requ, res));
