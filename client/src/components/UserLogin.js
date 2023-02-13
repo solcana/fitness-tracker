@@ -30,10 +30,6 @@ class UserLogin extends Component {
 		};
 		console.log(user);
 
-		axios
-			.get("http://localhost:5001/user", user)
-			.then((res) => console.log(res));
-
 		this.setState({
 			username: "",
 		});
