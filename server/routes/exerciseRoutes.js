@@ -1,8 +1,7 @@
 //Require necessary NPM Package
 const express = require("express");
 
-//Require Mongoose Model for Article
-const User = require("../models/user");
+//Require Mongoose Model for Workout
 const { Workout, Exercise } = require("../models/workout");
 
 //Instantiate a Router (mini app that only handles routes)
@@ -11,11 +10,11 @@ const router = express.Router();
 /**
  * Action:         INDEX
  * Method:         HTTP GET method
- * URI:            /api/articles
- * Description:    Get All Articles (what the route is going to do)
+ * URI:            /api/workout
+ * Description:    Get All workouts (what the route is going to do)
  */
 router.get("/api/workout", (req, res) => {
-	//use the Articles model imported above
+	//use the workout model imported above
 	Workout.find()
 		//return all articles as an array
 		.then((workouts) => {
@@ -28,15 +27,15 @@ router.get("/api/workout", (req, res) => {
 });
 
 /**
- * Action:          SHOW
- *  Method:         HTTP GET method
- * URI:            /api/articles/5d664b8b68b4bjdbjdbj
- * Description:    Get an individual Article by Article ID
+ * Action:         SHOW
+ * Method:         HTTP GET method
+ * URI:            /api/workout/5d664b8b68b4bjdbjdbj
+ * Description:    Get an individual workout by workout ID
  */
 router.get("/api/workout/:id", (req, res) => {
-	//use the Articles model imported above
+	//use the workout model imported above
 	Workout.findById(req.params.id)
-		//return an articles as an array
+		//return a workout as an array
 		.then((workout) => {
 			if (workout) {
 				res.status(200).json({ workout: workout });
@@ -57,10 +56,10 @@ router.get("/api/workout/:id", (req, res) => {
 });
 
 /**
- * Action:          DESTROY
- *  Method:         HTTP DELETE method
- * URI:            /api/articles/5d664b8b68b4bjdbjdbj
- * Description:    Delete an Article by Article ID
+ * Action:         DESTROY
+ * Method:         HTTP DELETE method
+ * URI:            /api/workout/5d664b8b68b4bjdbjdbj
+ * Description:    Delete a workout by workout ID
  */
 router.delete("/api/workout/:id", (req, res) => {
 	Workout.findById(req.params.id)
@@ -89,10 +88,10 @@ router.delete("/api/workout/:id", (req, res) => {
 });
 
 /**
- * Action:          UPDATE
- *  Method:         PATCH/PUT
- * URI:            /api/articles/5d664b8b68b4bjdbjdbj
- * Description:    Update an Article by Article ID
+ * Action:         UPDATE
+ * Method:         PATCH/PUT
+ * URI:            /api/workout/5d664b8b68b4bjdbjdbj
+ * Description:    Update a workout by workout ID
  */
 router.patch("/api/workout/:id", (req, res) => {
 	Workout.findById(req.params.id)
@@ -121,14 +120,14 @@ router.patch("/api/workout/:id", (req, res) => {
 });
 
 /**
- * Action:          CREATE
- *  Method:         POST
- * URI:            /api/articles
- * Description:    Create a new Article
+ * Action:         CREATE
+ * Method:         POST
+ * URI:            /api/workout
+ * Description:    Create a new workout
  */
 router.post("/api/workout", (req, res) => {
 	Workout.create(req.body.workout)
-		// On a successful `creat` action. respond with 201
+		// On a successful `create` action. respond with 201
 		//HTTP status and the content of the new workout
 		.then((newWorkout) => {
 			res.status(201).json({ workout: newWorkout });
