@@ -22,13 +22,10 @@ class App extends Component {
 						path="/workout"
 						element={<Workout />}
 					/>
-					<Route
-						path="/graph-statistics"
-						element={<GraphStatistics />}
-					/>
 				</Routes>
 			</>
 		);
 	}
 }
+
 export default App;
