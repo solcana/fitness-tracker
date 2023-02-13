@@ -139,5 +139,3 @@ router.post("/api/user", (req, res) => {
 });
 
 module.exports = router;
-
-router.post("/api/login", (requ, res));
