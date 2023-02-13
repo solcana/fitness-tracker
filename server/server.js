@@ -19,6 +19,8 @@ const exerciseRouter = require("../server/routes/exerciseRoutes");
 
 const indexRouter = require("../server/routes/index");
 
+const userRouter = require("./routes/userRoutes"); //SL here***
+
 // Instantiate Express Application Object
 const app = express();
 
@@ -35,6 +37,7 @@ app.use(express.json());
 // Mount imported Routers
 app.use(indexRouter);
 app.use(exerciseRouter);
+app.use(userRouter); //SL here ****
 
 // Returns a statement saying the App is listening on our specified port
 app.listen(port, () => console.log(`App is listening on port ${port}`));
