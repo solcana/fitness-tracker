@@ -7,7 +7,10 @@ class ExerciseInputModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      show: false,
+      exerciseName: "",
+      exerciseWeight: "",
+      exerciseReps: ""
     };
   }
 
@@ -16,6 +19,30 @@ class ExerciseInputModal extends Component {
   };
 
   handleClose = () => {
+    this.setState({ show: false });
+  };
+
+  updateName = (e) => {
+    this.setState({ exerciseName: e.target.value });
+  };
+
+  updateWeight = (e) => {
+    this.setState({ exerciseWeight: e.target.value });
+  };
+
+  updateReps = (e) => {
+    this.setState({ exerciseReps: e.target.value });
+  };
+
+  handleAddExercise = () => {
+    const exercise = {
+        exerciseName: this.state.exerciseName, 
+        exerciseWeight: this.state.exerciseWeight, 
+        exerciseReps: this.state.exerciseReps
+    }
+
+    this.props.onAddExercise(exercise);
+
     this.setState({ show: false });
   };
 
@@ -37,7 +64,7 @@ class ExerciseInputModal extends Component {
                 <Form.Label>Exercise Name</Form.Label>
                 <InputGroup>
                   <InputGroup.Text><FontAwesomeIcon icon={faFileSignature} style={{ width: "16px" }} /></InputGroup.Text>
-                  <FormControl type="name" placeholder="Enter exercise name" />
+                  <FormControl type="name" placeholder="Enter exercise name" onChange={this.updateName} />
                 </InputGroup>
                 <Form.Text className="text-muted">
                   Enter any name for your exercise.
@@ -47,8 +74,8 @@ class ExerciseInputModal extends Component {
               <Form.Group controlId="formExerciseWeight">
                 <Form.Label>Weight</Form.Label>
                 <InputGroup>
-                  <InputGroup.Text><FontAwesomeIcon icon={faDumbbell} style={{ width: "16px" }}/></InputGroup.Text>
-                  <FormControl type="weight" placeholder="Enter exercise weight (kg)" />
+                  <InputGroup.Text><FontAwesomeIcon icon={faDumbbell} style={{ width: "16px" }} /></InputGroup.Text>
+                  <FormControl type="weight" placeholder="Enter exercise weight (kg)" onChange={this.updateWeight} />
                 </InputGroup>
               </Form.Group>
 
@@ -56,7 +83,7 @@ class ExerciseInputModal extends Component {
                 <Form.Label>Reps</Form.Label>
                 <InputGroup>
                   <InputGroup.Text><FontAwesomeIcon icon={faHashtag} style={{ width: "16px" }}/></InputGroup.Text>
-                  <FormControl type="reps" placeholder="Enter exercise reps (#)" />
+                  <FormControl type="reps" placeholder="Enter exercise reps (#)" onChange={this.updateReps} />
                 </InputGroup>
               </Form.Group>
 
@@ -67,7 +94,7 @@ class ExerciseInputModal extends Component {
             <Button variant="secondary" onClick={this.handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.handleClose}>
+            <Button variant="primary" onClick={this.handleAddExercise}>
               Add Exercise
             </Button>
           </Modal.Footer>
