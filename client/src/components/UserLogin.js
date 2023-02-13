@@ -30,9 +30,31 @@ class UserLogin extends Component {
 		};
 		console.log(user);
 
+		console.log("Username from state:", this.state.username);
+
 		axios
-			.get("http://localhost:5001/user", user)
-			.then((res) => console.log(res));
+			.get(`http://localhost:5001/user`)
+			.then((response) => {
+				// Get the user data from the response
+				const users = response.data.user;
+
+				console.log("Users:", users);
+				// Find the user with the matching username
+				const user = users.find(
+					(user) => user.username === this.state.username
+				);
+
+				// Check if the user was found
+				if (user) {
+					console.log("User found:", user);
+				} else {
+					// username does not exist in the database
+					console.log("User not found");
+				}
+			})
+			.catch((err) => {
+				console.error("Error: ", err);
+			});
 
 		this.setState({
 			username: "",
