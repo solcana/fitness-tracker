@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
 
 class UserLogin extends Component {
 	constructor(props) {
@@ -17,6 +18,8 @@ class UserLogin extends Component {
 		this.setState({
 			username: e.target.value,
 		});
+		const user = this.state.username;
+		console.log(user);
 	};
 
 	onSubmit = (e) => {
@@ -26,18 +29,19 @@ class UserLogin extends Component {
 			username: this.state.username,
 		};
 		console.log(user);
+
 		this.setState({
 			username: "",
 		});
 
-		window.location = "/";
+		// window.location = "/";
 	};
 
 	render() {
 		return (
 			<Container style={{ width: "400px" }}>
 				<h3>User Login</h3>
-				<Form>
+				<Form onSubmit={this.onSubmit}>
 					<Form.Group
 						className="mb-3"
 						controlId="formBasicEmail">
@@ -45,6 +49,7 @@ class UserLogin extends Component {
 						<Form.Control
 							type="text"
 							placeholder="Enter username"
+							onChange={this.onChangeUsername}
 						/>
 						<Form.Text className="text-muted">
 							We'll never share your email with anyone else.
@@ -85,8 +90,7 @@ class UserLogin extends Component {
 							className="submit-button"
 							variant="primary"
 							type="submit"
-							style={{ marginRight: "10px" }}
-							onSubmit={this.onSubmit}>
+							style={{ marginRight: "10px" }}>
 							Submit
 						</Button>
 						<Button
