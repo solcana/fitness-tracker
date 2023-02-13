@@ -30,6 +30,8 @@ class UserLogin extends Component {
 		};
 		console.log(user);
 
+
+
 		console.log("Username from state:", this.state.username);
 
 		axios
@@ -55,6 +57,7 @@ class UserLogin extends Component {
 			.catch((err) => {
 				console.error("Error: ", err);
 			});
+
 
 		this.setState({
 			username: "",
