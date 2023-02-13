@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Button, Modal, Form, InputGroup, FormControl } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileSignature, faDumbbell, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
 class ExerciseInputModal extends Component {
   constructor(props) {
@@ -33,22 +35,31 @@ class ExerciseInputModal extends Component {
             <Form>
               <Form.Group controlId="formExerciseName">
                 <Form.Label>Exercise Name</Form.Label>
-                <Form.Control type="name" placeholder="Enter exercise name" />
+                <InputGroup>
+                  <InputGroup.Text><FontAwesomeIcon icon={faFileSignature} style={{ width: "16px" }} /></InputGroup.Text>
+                  <FormControl type="name" placeholder="Enter exercise name" />
+                </InputGroup>
                 <Form.Text className="text-muted">
-                    Enter any name for your exercise.
+                  Enter any name for your exercise.
                 </Form.Text>
               </Form.Group>
 
               <Form.Group controlId="formExerciseWeight">
                 <Form.Label>Weight</Form.Label>
-                <Form.Control type="weight" placeholder="Enter exercise weight (kg)" />
+                <InputGroup>
+                  <InputGroup.Text><FontAwesomeIcon icon={faDumbbell} style={{ width: "16px" }}/></InputGroup.Text>
+                  <FormControl type="weight" placeholder="Enter exercise weight (kg)" />
+                </InputGroup>
               </Form.Group>
 
-              <Form.Group controlId="formBasicPassword">
+              <Form.Group controlId="formExerciseWeight">
                 <Form.Label>Reps</Form.Label>
-                <Form.Control type="reps" placeholder="Enter exercise repetitions (#)" />
+                <InputGroup>
+                  <InputGroup.Text><FontAwesomeIcon icon={faHashtag} style={{ width: "16px" }}/></InputGroup.Text>
+                  <FormControl type="reps" placeholder="Enter exercise reps (#)" />
+                </InputGroup>
               </Form.Group>
-              
+
             </Form>
           </Modal.Body>
 
