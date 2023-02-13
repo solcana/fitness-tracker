@@ -30,18 +30,19 @@ class UserLogin extends Component {
 		};
 		console.log(user);
 
+		console.log("Username from state:", this.state.username);
+
 		axios
 			.get(`http://localhost:5001/user`)
 			.then((response) => {
 				// Get the user data from the response
-				const users = response.data.user;
+				const users = response.data;
 
+				console.log("Users:", users);
 				// Find the user with the matching username
 				const user = users.find(
-					(user) => user.username === this.state.username
+					(user) => users.username === this.state.username
 				);
-				console.log("State", user);
-
 				// Check if the user was found
 				if (user) {
 					console.log("User found:", user);
