@@ -54,12 +54,11 @@ class ExerciseInputModal extends Component {
 
     axios
       .post(apiUrl + "/workout/63ea7912c7533ea10c25d49e/exercises", {
-        "exercise":
-            {
-                "name": this.state.exerciseName,
-                "weight": this.state.exerciseWeight,
-                "reps": this.state.exerciseReps,
-            }
+        exercise: {
+          name: this.state.exerciseName,
+          weight: this.state.exerciseWeight,
+          reps: this.state.exerciseReps,
+        },
       })
       .then((response) => {
         console.log(response);
