@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import ExerciseHistory from "./ExerciseHistory";
+import apiUrl from "./apiConfig";
 
 export class WorkoutHistory extends Component {
+  apiTest = () => {
+    console.log(apiUrl);
+  };
+
   render() {
     return (
       <Card style={{ width: "100%" }} border="primary">
@@ -40,6 +45,7 @@ export class WorkoutHistory extends Component {
             <ExerciseHistory exerciseName="Push ups" weight="100" reps="1" />
           </ListGroup.Item>
         </ListGroup>
+        <button onClick={this.apiTest}>Click me</button>
       </Card>
     );
   }

@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
-import { Button, Modal, Form, InputGroup, FormControl } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileSignature, faDumbbell, faHashtag } from '@fortawesome/free-solid-svg-icons';
+import React, { Component } from "react";
+import { Button, Modal, Form, InputGroup, FormControl } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFileSignature,
+  faDumbbell,
+  faHashtag,
+} from "@fortawesome/free-solid-svg-icons";
 
 class ExerciseInputModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      show: false,
     };
   }
 
@@ -36,7 +40,12 @@ class ExerciseInputModal extends Component {
               <Form.Group controlId="formExerciseName">
                 <Form.Label>Exercise Name</Form.Label>
                 <InputGroup>
-                  <InputGroup.Text><FontAwesomeIcon icon={faFileSignature} style={{ width: "16px" }} /></InputGroup.Text>
+                  <InputGroup.Text>
+                    <FontAwesomeIcon
+                      icon={faFileSignature}
+                      style={{ width: "16px" }}
+                    />
+                  </InputGroup.Text>
                   <FormControl type="name" placeholder="Enter exercise name" />
                 </InputGroup>
                 <Form.Text className="text-muted">
@@ -47,19 +56,34 @@ class ExerciseInputModal extends Component {
               <Form.Group controlId="formExerciseWeight">
                 <Form.Label>Weight</Form.Label>
                 <InputGroup>
-                  <InputGroup.Text><FontAwesomeIcon icon={faDumbbell} style={{ width: "16px" }}/></InputGroup.Text>
-                  <FormControl type="weight" placeholder="Enter exercise weight (kg)" />
+                  <InputGroup.Text>
+                    <FontAwesomeIcon
+                      icon={faDumbbell}
+                      style={{ width: "16px" }}
+                    />
+                  </InputGroup.Text>
+                  <FormControl
+                    type="weight"
+                    placeholder="Enter exercise weight (kg)"
+                  />
                 </InputGroup>
               </Form.Group>
 
               <Form.Group controlId="formExerciseWeight">
                 <Form.Label>Reps</Form.Label>
                 <InputGroup>
-                  <InputGroup.Text><FontAwesomeIcon icon={faHashtag} style={{ width: "16px" }}/></InputGroup.Text>
-                  <FormControl type="reps" placeholder="Enter exercise reps (#)" />
+                  <InputGroup.Text>
+                    <FontAwesomeIcon
+                      icon={faHashtag}
+                      style={{ width: "16px" }}
+                    />
+                  </InputGroup.Text>
+                  <FormControl
+                    type="reps"
+                    placeholder="Enter exercise reps (#)"
+                  />
                 </InputGroup>
               </Form.Group>
-
             </Form>
           </Modal.Body>
 
