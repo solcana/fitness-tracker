@@ -72,42 +72,33 @@ app.get("/test", (req, res) => {
 
 // Login Route
 app.post("/api/login", (req, res) => {
-	console.log("POST request recieved at api/login!");
-	//verify that they are supplying username and password
-
+	// verify that they are supplying username and password
 	if (req.body.username && req.body.password) {
-		console.log(
-			"Username and password given",
-			user[0].username,
-			user[0].password
+		// search for the user in the database
+		User.findOne(
+			{ username: req.body.username, password: req.body.password },
+			(err, user) => {
+				if (err) {
+					console.log(err);
+					return res.status(500).json({ error: "Server error" });
+				}
+				if (!user) {
+					return res
+						.status(401)
+						.json({ error: "Invalid username or password" });
+				}
+				// generate and send JWT
+				const payload = {
+					response: "Login successful",
+					// try to keep as bare minimum as possible
+					// id: user.id,
+				};
+				const token = jwt.sign(payload, jwtOptions.secretOrKey, {
+					expiresIn: 600,
+				});
+				res.status(200).json({ success: true, token: token });
+			}
 		);
-		//This should be a Database call...
-		User.find({ username: req.body.username, password: req.body.password });
-		console.log("anything found?");
-		//
-		//Example: User.find({username: req.body.username})
-		if (
-			req.body.username === user[0].username &&
-			req.body.password === user[0].password
-		) {
-			console.log("everything matched");
-			//Select the information we want to send to the user
-			const payload = {
-				response: "Login successful",
-				//try to keep as bare minimum as poss
-				// id: user.id,
-			};
-
-			//Build a JSON Web Token using the paylosd
-			const token = jwt.sign(payload, jwtOptions.secretOrKey, {
-				expiresIn: 600,
-			}); // token expires in 10 minutes
-
-			//Send the jsoin web token back to the user
-			res.status(200).json({ success: true, token: token });
-		} else {
-			res.status(401).json({ error: "Invalid username or password" });
-		}
 	} else {
 		res.status(400).json({ error: "Username & Password Required" });
 	}
