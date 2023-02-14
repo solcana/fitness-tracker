@@ -18,7 +18,7 @@ class WorkoutContainer extends Component {
 
     handleAddExercise = (exercise) => {
         this.setState(prevState => ({
-            exercises: [...prevState.exercises, exercise]
+            workoutExercises: [...prevState.workoutExercises, exercise]
         }));
     }
 
@@ -33,8 +33,6 @@ class WorkoutContainer extends Component {
 
                 this.setState({ latestWorkoutId: latestWorkoutId });
                 this.setState({ workoutExercises: latestWorkoutExercises })
-
-                console.log(this.state.workoutExercises);
             })
             .catch(error => {
                 console.log(error);
