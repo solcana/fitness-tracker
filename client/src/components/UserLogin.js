@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 class UserLogin extends Component {
@@ -47,26 +49,41 @@ class UserLogin extends Component {
 				// If the server responds with a successful login, set a token in local storage
 				localStorage.setItem("token", response.data.token);
 
+				toast.success("Login successful!", {
+					autoClose: 1000,
+				});
 				console.log("Successfully logged in");
-				// <prompt message="Login Successful" />;
-				// Redirect the user to the home page
-				// window.location = "/profile";
+				// Redirect the user to the home page after a delay of 2 seconds
+				setTimeout(() => {
+					window.location = "/profile";
+				}, 2000);
 			})
 
 			.catch((err) => {
 				console.error("There was an Error: ", err);
-			});
+				if (err.response && err.response.status === 401) {
+					// Incorrect username or password
+					toast.error("Incorrect username or password");
+				} else if (err.response && err.response.status === 400) {
+					// Username field is required
+					toast.warning("Username is required");
+				} else {
+					// Other error
+					toast.error("There was an error processing your request");
+				}
 
-		this.setState({
-			username: "",
-			password: "",
-		});
+				this.setState({
+					username: "",
+					password: "",
+				});
+			});
 	};
 
 	render() {
 		return (
 			<Container style={{ width: "400px" }}>
 				<h3>User Login</h3>
+				<ToastContainer />
 				<Form onSubmit={this.onSubmit}>
 					<Form.Group
 						className="mb-3"
