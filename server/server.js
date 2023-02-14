@@ -34,6 +34,7 @@ const exerciseRouter = require("../server/routes/exerciseRoutes");
 const indexRouter = require("../server/routes/index");
 
 const userRouter = require("./routes/userRoutes"); //SL here***
+const User = require("./models/user");
 
 // Instantiate Express Application Object
 const app = express();
@@ -71,8 +72,11 @@ app.get("/test", (req, res) => {
 
 // Login Route
 app.post("/api/login", (req, res) => {
+	console.log("POST request recieved at api/login!");
 	//verify that they are supplying username and password
+
 	if (req.body.username && req.body.password) {
+		console.log();
 		//This should be a Database call...
 		//
 		//Example: User.find({username: req.body.username})
