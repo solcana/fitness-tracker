@@ -22,47 +22,42 @@ class UserLogin extends Component {
 		console.log(user);
 	};
 
+	onChangePassword = (e) => {
+		this.setState({
+			password: e.target.value,
+		});
+		const pass = this.state.password;
+		console.log("password: ", pass);
+	};
+
 	onSubmit = (e) => {
 		e.preventDefault();
 
 		const user = {
 			username: this.state.username,
+			password: this.state.password,
 		};
-		console.log(user);
-
-
-
-		console.log("Username from state:", this.state.username);
+		console.log("User: ", user);
 
 		axios
-			.get(`http://localhost:5001/user`)
+			.post(`http://localhost:5001/api/login`, user)
 			.then((response) => {
-				// Get the user data from the response
-				const users = response.data.user;
-
-				console.log("Users:", users);
-				// Find the user with the matching username
-				const user = users.find(
-					(user) => user.username === this.state.username
-				);
-
-				// Check if the user was found
-				if (user) {
-					console.log("User found:", user);
-				} else {
-					// username does not exist in the database
-					console.log("User not found");
-				}
+				console.log("Response:", response.data);
+				// If the server responds with a successful login, set a token in local storage
+				localStorage.setItem("token", response.data.token);
+				console.log("Successfully logged in");
+				// Redirect the user to the home page
+				// window.location = "/";
 			})
+
 			.catch((err) => {
 				console.error("Error: ", err);
 			});
 
-
 		this.setState({
 			username: "",
+			password: "",
 		});
-		// window.location = "/";
 	};
 
 	render() {
@@ -91,6 +86,7 @@ class UserLogin extends Component {
 						<Form.Control
 							type="password"
 							placeholder="Password"
+							onChange={this.onChangePassword}
 						/>
 					</Form.Group>
 					<div
