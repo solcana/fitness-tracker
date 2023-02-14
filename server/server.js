@@ -76,18 +76,26 @@ app.post("/api/login", (req, res) => {
 	//verify that they are supplying username and password
 
 	if (req.body.username && req.body.password) {
-		console.log();
+		console.log(
+			"Username and password given",
+			user[0].username,
+			user[0].password
+		);
 		//This should be a Database call...
+		User.find({ username: req.body.username, password: req.body.password });
+		console.log("anything found?");
 		//
 		//Example: User.find({username: req.body.username})
 		if (
-			req.body.username === user.username &&
-			req.body.password === user.password
+			req.body.username === user[0].username &&
+			req.body.password === user[0].password
 		) {
+			console.log("everything matched");
 			//Select the information we want to send to the user
 			const payload = {
+				response: "Login successful",
 				//try to keep as bare minimum as poss
-				id: user.id,
+				// id: user.id,
 			};
 
 			//Build a JSON Web Token using the paylosd
