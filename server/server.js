@@ -10,6 +10,9 @@ const jwt = require("jsonwebtoken");
 // Require DB Configuration File
 const db = require("./config/db");
 
+//Require users from the database
+const user = require("./seedData/userSeed");
+
 // Connect to MongoDB database
 mongoose.connect(db, {
 	useNewUrlParser: true,
@@ -66,14 +69,6 @@ app.get("/test", (req, res) => {
 	});
 });
 
-//Make a dummy User for testing
-//Use a database for real use case
-const dummyUser = {
-	id: 42,
-	username: "Selina",
-	password: "1234",
-};
-
 // Login Route
 app.post("/api/login", (req, res) => {
 	//verify that they are supplying username and password
@@ -82,13 +77,13 @@ app.post("/api/login", (req, res) => {
 		//
 		//Example: User.find({username: req.body.username})
 		if (
-			req.body.username === dummyUser.username &&
-			req.body.password === dummyUser.password
+			req.body.username === user.username &&
+			req.body.password === user.password
 		) {
 			//Select the information we want to send to the user
 			const payload = {
 				//try to keep as bare minimum as poss
-				id: dummyUser.id,
+				id: user.id,
 			};
 
 			//Build a JSON Web Token using the paylosd
