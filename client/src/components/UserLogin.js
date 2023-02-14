@@ -37,9 +37,27 @@ class UserLogin extends Component {
 			username: this.state.username,
 			password: this.state.password,
 		};
-		console.log(user);
+		console.log("User: ", user);
 
-		console.log("Username from state:", this.state.username);
+		axios
+			.post(`http://localhost:5001/api/login`, user)
+			.then((response) => {
+				console.log("Response:", response.data);
+				// If the server responds with a successful login, set a token in local storage
+				localStorage.setItem("token", response.data.token);
+				console.log("Successfully logged in");
+				// Redirect the user to the home page
+				// window.location = "/";
+			})
+
+			.catch((err) => {
+				console.error("Error: ", err);
+			});
+
+		this.setState({
+			username: "",
+			password: "",
+		});
 	};
 
 	render() {
