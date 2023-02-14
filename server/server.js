@@ -10,6 +10,9 @@ const jwt = require("jsonwebtoken");
 // Require DB Configuration File
 const db = require("./config/db");
 
+//Require users from the database
+const user = require("./seedData/userSeed");
+
 // Connect to MongoDB database
 mongoose.connect(db, {
 	useNewUrlParser: true,
@@ -31,6 +34,7 @@ const exerciseRouter = require("../server/routes/exerciseRoutes");
 const indexRouter = require("../server/routes/index");
 
 const userRouter = require("./routes/userRoutes"); //SL here***
+const User = require("./models/user");
 
 // Instantiate Express Application Object
 const app = express();
@@ -66,29 +70,24 @@ app.get("/test", (req, res) => {
 	});
 });
 
-//Make a dummy User for testing
-//Use a database for real use case
-const dummyUser = {
-	id: 42,
-	username: "Selina",
-	password: "1234",
-};
-
 // Login Route
 app.post("/api/login", (req, res) => {
+	console.log("POST request recieved at api/login!");
 	//verify that they are supplying username and password
+
 	if (req.body.username && req.body.password) {
+		console.log();
 		//This should be a Database call...
 		//
 		//Example: User.find({username: req.body.username})
 		if (
-			req.body.username === dummyUser.username &&
-			req.body.password === dummyUser.password
+			req.body.username === user.username &&
+			req.body.password === user.password
 		) {
 			//Select the information we want to send to the user
 			const payload = {
 				//try to keep as bare minimum as poss
-				id: dummyUser.id,
+				id: user.id,
 			};
 
 			//Build a JSON Web Token using the paylosd
