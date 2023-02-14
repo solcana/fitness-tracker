@@ -4,16 +4,11 @@ const passportJWT = require("passport-jwt");
 //Passport Options
 const jwtOptions = require("./passportOptions");
 
+//Require user
+const user = require("../seedData/userSeed");
+
 //JSON Web Token Strategy object that we will be using
 const JwtStrategy = passportJWT.Strategy;
-
-//Make a dummy User for testing
-//Use a database for real use case
-const dummyUser = {
-	id: 42,
-	username: "Selina",
-	password: "pass",
-};
 
 //set up a funtion where we are going to see if the requesting user
 //has a valid jwt or not. And to see if the token is expired.
@@ -26,9 +21,9 @@ const strategy = new JwtStrategy(jwtOptions, (jwtPayload, next) => {
 
 	//Example real life db call:
 	//User.findById(jwtPayLoad.id)
-	if (dummyUser.id === jwtPayload.id) {
+	if (user.id === jwtPayload.id) {
 		//If ID is in the database, then lets run our original route
-		next(null, dummyUser);
+		next(null, user);
 	} else {
 		//If ID does not match, then skip our target route and return a 401
 		next(null, false);
