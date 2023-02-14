@@ -1,15 +1,16 @@
 const userSeedData = [
-    {
-        firstName: "Usman",
-        lastName: "Bashir",
-        username: "Us-dog",
-        password: "gains123",
-    },{
-        firstName: "Joan",
-        lastName: "Kalanzi",
-        username: "JKal",
-        password: "h8forks",
-    }
-]
+	{
+		firstName: "Usman",
+		lastName: "Bashir",
+		username: "Usman1",
+		password: "pass",
+	},
+	{
+		firstName: "Joan",
+		lastName: "Kalanzi",
+		username: "Joan1",
+		password: "pass",
+	},
+];
 
 module.exports = userSeedData;

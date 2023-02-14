@@ -6,7 +6,7 @@ import apiUrl from "./apiConfig";
 
 export class WorkoutHistory extends Component {
   apiTest = () => {
-    console.log(apiUrl);
+    console.log(apiUrl + "/workout");
   };
 
   render() {
