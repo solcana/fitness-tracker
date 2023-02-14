@@ -138,4 +138,33 @@ router.post("/api/workout", (req, res) => {
 		});
 });
 
+
+
+
+router.post("/api/workout/:id/exercises", (req, res) => {
+	Workout.findById(req.params.id)
+	  .then((workout) => {
+		if (workout) {
+		  const exerciseData = req.body.exercise;
+		  workout.exercises.push(exerciseData);
+		  return workout.save();
+		} else {
+		  res.status(404).json({
+			error: {
+			  name: "DocumentNotFoundError",
+			  message: "The provided ID doesn't match any documents",
+			},
+		  });
+		}
+	  })
+	  .then((updatedWorkout) => {
+		res.status(200).json({ workout: updatedWorkout });
+	  })
+	  .catch((error) => {
+		res.status(500).json({ error: error });
+	  });
+  });
+
+  
+
 module.exports = router;
