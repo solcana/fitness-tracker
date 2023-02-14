@@ -21,12 +21,12 @@ const strategy = new JwtStrategy(jwtOptions, (jwtPayload, next) => {
 
 	//Example real life db call:
 	//User.findById(jwtPayLoad.id)
-	if (user.id === jwtPayload.id) {
+	if (user[0].id === jwtPayload.id) {
 		console.log("User authenticated successfully - passStrat");
 		//If ID is in the database, then lets run our original route
 		next(null, user);
 	} else {
-		console.log("User authensication failed - passStrat");
+		console.log("User authentication failed - passStrat");
 		//If ID does not match, then skip our target route and return a 401
 		next(null, false);
 	}

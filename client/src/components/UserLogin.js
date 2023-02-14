@@ -44,7 +44,7 @@ class UserLogin extends Component {
 			.then((response) => {
 				console.log("Response:", response.data);
 				// If the server responds with a successful login, set a token in local storage
-				localStorage.setItem("token", response.data.token);
+				// localStorage.setItem("token", response.data.token);
 				console.log("Successfully logged in");
 				// Redirect the user to the home page
 				// window.location = "/";
