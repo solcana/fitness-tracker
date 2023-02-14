@@ -11,7 +11,8 @@ class WorkoutContainer extends Component {
         super(props);
         this.state = {
             latestWorkoutId: "",
-            exercises: []
+            exercises: [],
+            workoutExercises: []
         };
     }
 
@@ -25,8 +26,15 @@ class WorkoutContainer extends Component {
         // Get all workouts and select ID as last entry in database             // MAYBE CHANGE LATER TO BE LATEST CreatedAt DATE?
         axios.get(apiUrl + "/workout")
             .then(response => {
-                const latestWorkoutId = response.data.workouts[response.data.workouts.length - 1]._id;
+                const latestWorkout = response.data.workouts[response.data.workouts.length - 1];
+
+                const latestWorkoutExercises = latestWorkout.exercises
+                const latestWorkoutId = latestWorkout._id;
+
                 this.setState({ latestWorkoutId: latestWorkoutId });
+                this.setState({ workoutExercises: latestWorkoutExercises })
+
+                console.log(this.state.workoutExercises);
             })
             .catch(error => {
                 console.log(error);
@@ -38,6 +46,7 @@ class WorkoutContainer extends Component {
             <>
                 <h5>WorkoutContainer</h5>
                 <ExerciseItem />
+                {this.state.workoutExercises && this.state.workoutExercises[2] && <p>Here is the ID: {this.state.workoutExercises[2]._id}</p>}
                 <div className="d-flex justify-content-center">
                     <ExerciseInputModal
                         onAddExercise={this.handleAddExercise}
@@ -49,3 +58,4 @@ class WorkoutContainer extends Component {
 }
 
 export default WorkoutContainer;
+      
