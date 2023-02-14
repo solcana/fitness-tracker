@@ -23,7 +23,6 @@ class ExerciseInputModal extends Component {
   handleShow = () => {
     this.setState({ show: true });
     console.log(apiUrl + "/workout");
-
     axios.get(apiUrl + "/workout").then((res) => console.log(res));
   };
 
@@ -53,7 +52,7 @@ class ExerciseInputModal extends Component {
     this.props.onAddExercise(exercise);
 
     axios
-      .post(apiUrl + "/workout/63ea7912c7533ea10c25d49e/exercises", {
+      .post(apiUrl + `/workout/${this.props.latestWorkoutId}/exercises`, {
         "exercise":
             {
                 "name": this.state.exerciseName,
@@ -61,9 +60,9 @@ class ExerciseInputModal extends Component {
                 "reps": this.state.exerciseReps,
             }
       })
-      .then((response) => {
-        console.log(response);
-      })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
       .catch((error) => {
         if (error.response) {
           //response status is an error code

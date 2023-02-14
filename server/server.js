@@ -15,11 +15,11 @@ const user = require("./seedData/userSeed");
 
 // Connect to MongoDB database
 mongoose.connect(db, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 mongoose.connection.once("open", () =>
-	console.log(`Connection to MongoDB on ${db}`)
+  console.log(`Connection to MongoDB on ${db}`)
 );
 
 //Require Passport Strategy and Options
@@ -45,7 +45,7 @@ const reactPort = 3000;
 
 //Set CORS headers on response from this API using the 'cors' NPM package
 app.use(
-	cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${reactPort}` })
+  cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${reactPort}` })
 );
 
 //Define our suth strategy from before
@@ -65,9 +65,9 @@ app.use(userRouter); //SL here ****
 
 //temp test route
 app.get("/test", (req, res) => {
-	bcrypt.hash("1234", saltRounds, (error, hash) => {
-		res.status(200).json({ password: hash });
-	});
+  bcrypt.hash("1234", saltRounds, (error, hash) => {
+    res.status(200).json({ password: hash });
+  });
 });
 
 // Login Route
@@ -106,14 +106,14 @@ app.post("/api/login", (req, res) => {
 
 //dummy path to protect site form invalid
 app.get(
-	"/api/protected",
-	passport.authenticate("jwt", { session: false }),
-	(req, res) => {
-		res.status(200).json({
-			message: "Hey, you can see this message with the JSon Web Token.",
-			user: req.user,
-		});
-	}
+  "/api/protected",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.status(200).json({
+      message: "Hey, you can see this message with the JSon Web Token.",
+      user: req.user,
+    });
+  }
 );
 
 // Returns a statement saying the App is listening on our specified port
