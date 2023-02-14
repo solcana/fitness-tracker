@@ -43,8 +43,10 @@ class UserLogin extends Component {
 			.post(`http://localhost:5001/api/login`, user)
 			.then((response) => {
 				console.log("Response:", response.data);
+
 				// If the server responds with a successful login, set a token in local storage
-				// localStorage.setItem("token", response.data.token);
+				localStorage.setItem("token", response.data.token);
+
 				console.log("Successfully logged in");
 				// <prompt message="Login Successful" />;
 				// Redirect the user to the home page
@@ -52,7 +54,7 @@ class UserLogin extends Component {
 			})
 
 			.catch((err) => {
-				console.error("Error: ", err);
+				console.error("There was an Error: ", err);
 			});
 
 		this.setState({
