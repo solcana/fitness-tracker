@@ -26,6 +26,8 @@ class UserLogin extends Component {
 		this.setState({
 			password: e.target.value,
 		});
+		const pass = this.state.password;
+		console.log("password: ", pass);
 	};
 
 	onSubmit = (e) => {
@@ -33,6 +35,7 @@ class UserLogin extends Component {
 
 		const user = {
 			username: this.state.username,
+			password: this.state.password,
 		};
 		console.log(user);
 
@@ -65,6 +68,7 @@ class UserLogin extends Component {
 						<Form.Control
 							type="password"
 							placeholder="Password"
+							onChange={this.onChangePassword}
 						/>
 					</Form.Group>
 					<div
