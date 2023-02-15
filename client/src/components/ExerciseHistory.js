@@ -13,6 +13,9 @@ export class ExerciseHistory extends Component {
           <Card border="secondary" className="repsCard">
             <div>{this.props.reps} reps</div>
           </Card>
+          <div className="btn" onClick={() => this.props.handleDeleteExercise(this.props.exercise._id, this.props.workoutID)}>
+            <i className="fas fa-trash"></i>
+          </div>
         </span>
       </div>
     );
