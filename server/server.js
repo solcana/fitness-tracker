@@ -73,31 +73,116 @@ app.get("/test", (req, res) => {
 app.post("/api/login", (req, res) => {
 	//verify that they are supplying username and password
 	if (req.body.username && req.body.password) {
-		//This should be a Database call...
-		//
-		//Example: User.find({username: req.body.username})
-		if (
-			req.body.username === user.username &&
-			req.body.password === user.password
-		) {
-			//Select the information we want to send to the user
-			const payload = {
-				//try to keep as bare minimum as poss
-				id: user.id,
-			};
 
-			//Build a JSON Web Token using the paylosd
-			const token = jwt.sign(payload, jwtOptions.secretOrKey, {
-				expiresIn: 600,
-			}); // token expires in 10 minutes
+		// search for the user in the database
+		User.findOne(
+			{ username: req.body.username, password: req.body.password },
+			(err, user) => {
+				if (err) {
+					console.log(err);
+					return res.status(500).json({ error: "Server error" });
+				}
+				if (!user) {
+					return res
+						.status(401)
+						.json({ error: "Invalid username or password" });
+				}
+				// compare password with stored hash
+				const match = bcrypt.compare(req.body.password, user.password);
+				if (!match) {
+					return res
+						.status(401)
+						.json({ error: "Invalid username or password" });
+				}
 
-			//Send the jsoin web token back to the user
-			res.status(200).json({ success: true, token: token });
-		} else {
-			res.status(401).json({ error: "Invalid username or password" });
-		}
+				// generate and send JWT
+				const payload = {
+					userId: user._id,
+				};
+				console.log("Payload: ", payload);
+
+				const token = jwt.sign(payload, jwtOptions.secretOrKey, {
+					expiresIn: 600,
+				});
+				res.status(200).json({ success: true, token: token });
+			}
+		);
 	} else {
 		res.status(400).json({ error: "Username & Password Required" });
+	}
+});
+
+// Register Route
+app.post("/api/register", (req, res) => {
+	console.log("Register POST request - 1");
+	// verify that they are supplying all required information
+	if (
+		req.body.firstname &&
+		req.body.lastname &&
+		req.body.username &&
+		req.body.password
+	) {
+		console.log("Test2: ", req.body.username);
+		// check if user already exists in the database
+		User.findOne(
+			{
+				$or: [
+					{ username: req.body.username },
+					{ firstname: req.body.firstname },
+					{ lastname: req.body.lastname },
+				],
+			},
+			(err, user) => {
+				if (err) {
+					console.log(err);
+					return res.status(500).json({ error: "Server error" });
+				}
+				if (user) {
+					return res.status(400).json({ error: "User already exists" });
+				}
+				// create new user
+				const newUser = new User({
+					firstname: req.body.firstname,
+					lastname: req.body.lastname,
+					username: req.body.username,
+					password: req.body.password,
+				});
+				// hash the password
+				bcrypt.genSalt(10, (err, salt) => {
+					if (err) {
+						console.log(err);
+						return res.status(500).json({ error: "Server error" });
+					}
+					bcrypt.hash(newUser.password, salt, (err, hash) => {
+						if (err) {
+							console.log(err);
+							return res.status(500).json({ error: "Server error" });
+						}
+						newUser.password = hash;
+						// save the user to the database
+						newUser.save((err, user) => {
+							if (err) {
+								console.log(err);
+								return res.status(500).json({ error: "Server error" });
+							}
+							// generate and send JWT
+							const payload = {
+								userId: user._id,
+							};
+							console.log("Payload: ", payload);
+							const token = jwt.sign(payload, jwtOptions.secretOrKey, {
+								expiresIn: 600,
+							});
+							res.status(200).json({ success: true, token: token });
+						});
+					});
+				});
+			}
+		);
+	} else {
+		res
+			.status(400)
+			.json({ error: "Username, Password, Firstname & Lastname Required" });
 	}
 });
 
