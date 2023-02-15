@@ -16,7 +16,7 @@ function Graph() {
 
   return (
     <Container>
-      <h1>Usman's Workout History</h1>
+      <h1>Usman's Workout Intensity History</h1>
       <Form onSubmit={handleAddData}>
         <Form.Group>
           <Form.Label>Date</Form.Label>
