@@ -20,7 +20,6 @@ class WorkoutEditModal extends Component {
 
   handleShow = () => {
     this.setState({ show: true });
-    console.log(apiUrl + "/workout");
     axios.get(apiUrl + "/workout").then((res) => console.log(res));
   };
 
@@ -33,7 +32,6 @@ class WorkoutEditModal extends Component {
   };
 
   handleEditWorkout = () => {
-    console.log("Editing workout");
     axios
       .patch(apiUrl + `/workout/${this.props.workout._id}`, {
         "workout":
@@ -41,9 +39,6 @@ class WorkoutEditModal extends Component {
                 "name": this.state.workoutName
             }
       })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
       .catch((error) => {
         if (error.response) {
           //response status is an error code
