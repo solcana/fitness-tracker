@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import UserRegisterModal from "./UserRegisterModal";
 
 class UserLogin extends Component {
 	constructor(props) {
@@ -13,9 +14,17 @@ class UserLogin extends Component {
 		this.state = {
 			username: "",
 			password: "",
+			showRegisterModal: false,
 		};
 	}
 
+	handleOpenModal = () => {
+		this.setState({ showRegisterModal: true });
+	};
+
+	handleCloseModal = () => {
+		this.setState({ showRegisterModal: false });
+	};
 	onChangeUsername = (e) => {
 		this.setState({
 			username: e.target.value,
@@ -63,10 +72,14 @@ class UserLogin extends Component {
 				console.error("There was an Error: ", err);
 				if (err.response && err.response.status === 401) {
 					// Incorrect username or password
-					toast.error("Incorrect username or password");
+					toast.error("Incorrect username or password", {
+						autoClose: 2000,
+					});
 				} else if (err.response && err.response.status === 400) {
 					// Username field is required
-					toast.warning("Username is required");
+					toast.warning("Username is required", {
+						autoClose: 2000,
+					});
 				} else {
 					// Other error
 					toast.error("There was an error processing your request");
@@ -140,11 +153,15 @@ class UserLogin extends Component {
 						<Button
 							className="submit-button"
 							variant="primary"
-							type="submit">
+							onClick={this.handleOpenModal}>
 							Register
 						</Button>
 					</div>
 				</Form>
+				<UserRegisterModal
+					showRegisterModal={this.state.showRegisterModal}
+					handleClose={this.handleCloseModal}
+				/>
 			</Container>
 		);
 	}
