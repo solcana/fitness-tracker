@@ -12,6 +12,8 @@ export class WorkoutHistory extends Component {
 
     this.state = {
       workouts: [],
+      showEditModal: false,
+      workoutToEdit: null,
     };
   }
 
@@ -31,8 +33,9 @@ export class WorkoutHistory extends Component {
     console.log(apiUrl + "/workout");
   };
 
-  handleEditWorkout = () => {
+  handleEditWorkout = (workout) => {
     console.log("Edit Workout");
+    this.setState({ showEditModal: true, workoutToEdit: workout });
   }
 
   handleDeleteWorkout = (id) => {

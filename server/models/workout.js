@@ -12,6 +12,7 @@ const exerciseSchema = new mongoose.Schema(
 
 const workoutSchema = new mongoose.Schema(
   {
+	name: { type: String, default: `New Workout on ${(new Date(Date.now())).toLocaleDateString()}` },
     startDate: String,
     completed: { type: Boolean, default: false },
     exercises: [exerciseSchema],
