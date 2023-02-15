@@ -26,7 +26,9 @@ class WorkoutHistoryItem extends Component {
                     {this.props.workout.name ? this.props.workout.name : "Default Exercise Name"}
                     </Card.Title>
                     <div className="d-flex ml-auto">
-                        <WorkoutEditModal workout={this.props.workout}/>
+                        <WorkoutEditModal 
+                            workout={this.props.workout}
+                            handleEditWorkout={this.props.handleEditWorkout} />
                     {/* <div className="btn" onClick={this.props.handleEditWorkout}>
                         <i className="fas fa-gear"></i>
                     </div> */}
