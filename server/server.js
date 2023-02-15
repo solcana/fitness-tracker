@@ -182,7 +182,7 @@ app.post("/api/register", (req, res) => {
 		);
 	} else {
 		res
-			.status(400)
+			.status(401)
 			.json({ error: "Username, Password, Firstname & Lastname Required" });
 	}
 });
