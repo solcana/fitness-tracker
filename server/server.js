@@ -74,40 +74,43 @@ app.get("/test", (req, res) => {
 // Login Route
 app.post("/api/login", (req, res) => {
 	//verify that they are supplying username and password
+	console.log("login POST request");
 	if (req.body.username && req.body.password) {
 		// search for the user in the database
-		User.findOne(
-			{ username: req.body.username, password: req.body.password },
-			(err, user) => {
-				if (err) {
-					console.log(err);
-					return res.status(500).json({ error: "Server error" });
-				}
-				if (!user) {
-					return res
-						.status(401)
-						.json({ error: "Invalid username or password" });
-				}
-				// compare password with stored hash
-				const match = bcrypt.compare(req.body.password, user.password);
-				if (!match) {
-					return res
-						.status(401)
-						.json({ error: "Invalid username or password" });
-				}
-
-				// generate and send JWT
-				const payload = {
-					userId: user._id,
-				};
-				console.log("Payload: ", payload);
-
-				const token = jwt.sign(payload, jwtOptions.secretOrKey, {
-					expiresIn: 600,
-				});
-				res.status(200).json({ success: true, token: token });
+		User.findOne({ username: req.body.username }, (err, user) => {
+			if (err) {
+				console.log("Error 500 here>>>", err);
+				return res.status(500).json({ error: "Server error" });
 			}
-		);
+			if (!user) {
+				console.log("username123", req.body.username, req.body.password);
+
+				console.log("user is..", user);
+				console.log("Error 401 not user here>>>", err);
+				return res.status(401).json({ error: "Invalid username or password" });
+			}
+			console.log("BCRYPT userpassword: ", user.password);
+			console.log("BCRYPT  req userpassword: ", req.body.password);
+
+			// compare password with stored hash
+			const match = bcrypt.compareSync(req.body.password, user.password);
+			if (!match) {
+				console.log("Error 401 bcrypt here>>>", err);
+				return res.status(401).json({ error: "Invalid username or password" });
+			}
+			console.log("PAYLOAD user id: ", user._id);
+
+			// generate and send JWT
+			const payload = {
+				userId: user._id,
+			};
+			console.log("Payload: ", payload);
+
+			const token = jwt.sign(payload, jwtOptions.secretOrKey, {
+				expiresIn: 600,
+			});
+			res.status(200).json({ success: true, token: token });
+		});
 	} else {
 		res.status(400).json({ error: "Username & Password Required" });
 	}
@@ -175,6 +178,7 @@ app.post("/api/register", (req, res) => {
 								expiresIn: 600,
 							});
 							res.status(200).json({ success: true, token: token });
+							console.log("Token given? ", token);
 						});
 					});
 				});
