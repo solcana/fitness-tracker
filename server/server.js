@@ -121,7 +121,7 @@ app.post("/api/register", (req, res) => {
 		req.body.password &&
 		req.body.firstname &&
 		req.body.lastname
-	)
+	) {
 		// check if user already exists in the database
 		User.findOne(
 			{
@@ -146,8 +146,43 @@ app.post("/api/register", (req, res) => {
 					username: req.body.username,
 					password: req.body.password,
 				});
+				// hash the password
+				bcrypt.genSalt(10, (err, salt) => {
+					if (err) {
+						console.log(err);
+						return res.status(500).json({ error: "Server error" });
+					}
+					bcrypt.hash(newUser.password, salt, (err, hash) => {
+						if (err) {
+							console.log(err);
+							return res.status(500).json({ error: "Server error" });
+						}
+						newUser.password = hash;
+						// save the user to the database
+						newUser.save((err, user) => {
+							if (err) {
+								console.log(err);
+								return res.status(500).json({ error: "Server error" });
+							}
+							// generate and send JWT
+							const payload = {
+								userId: user._id,
+							};
+							console.log("Payload: ", payload);
+							const token = jwt.sign(payload, jwtOptions.secretOrKey, {
+								expiresIn: 600,
+							});
+							res.status(200).json({ success: true, token: token });
+						});
+					});
+				});
 			}
 		);
+	} else {
+		res
+			.status(400)
+			.json({ error: "Username, Password, Firstname & Lastname Required" });
+	}
 });
 
 //dummy path to protect site form invalid

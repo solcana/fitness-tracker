@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button, Modal, Form, InputGroup, FormControl } from "react-bootstrap";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 class UserRegisterModal extends Component {
 	constructor(props) {
@@ -62,6 +64,59 @@ class UserRegisterModal extends Component {
 		this.setState({ showRegisterModal: false });
 	};
 
+	onSubmit = (e) => {
+		e.preventDefault();
+
+		const user = {
+			firstName: this.state.firstName,
+			lastName: this.state.lastName,
+			username: this.state.username,
+			password: this.state.password,
+		};
+		console.log("User: ", user);
+
+		axios
+			.post(`http://localhost:5001/api/register`, user)
+			.then((response) => {
+				console.log("Response:", response.data);
+
+				// If the server responds with a successful registration, set a token in local storage
+				localStorage.setItem("token", response.data.token);
+
+				toast.success("Registration successful!", {
+					autoClose: 1000,
+				});
+				console.log("Successfully logged in");
+				// Redirect the user to the home page after a delay of 2 seconds
+				setTimeout(() => {
+					window.location = "/profile";
+				}, 2000);
+			})
+
+			.catch((err) => {
+				console.error("There was an Error: ", err);
+				if (err.response && err.response.status === 401) {
+					// Incorrect username or password
+					toast.error("Incorrect username or password", {
+						autoClose: 2000,
+					});
+				} else if (err.response && err.response.status === 400) {
+					// Username field is required
+					toast.warning("Username is required", {
+						autoClose: 2000,
+					});
+				} else {
+					// Other error
+					toast.error("There was an error processing your request");
+				}
+
+				this.setState({
+					username: "",
+					password: "",
+				});
+			});
+	};
+
 	render() {
 		return (
 			<>
@@ -73,7 +128,7 @@ class UserRegisterModal extends Component {
 					</Modal.Header>
 
 					<Modal.Body>
-						<Form>
+						<Form onSubmit={this.onSubmit}>
 							<Form.Group controlId="formFirstName">
 								<Form.Label>First Name</Form.Label>
 								<InputGroup>
