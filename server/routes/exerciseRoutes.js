@@ -226,4 +226,30 @@ router.delete("/api/workout/:id/exercises/:exerciseId", async (req, res) => {
  * Description:    Update an exercise for a given workout
  */
 
+//  This route handles PUT requests to update an exercise in a workout by workout ID and exercise ID.
+router.put("/api/workout/:id/exercises/:exerciseId", async (req, res) => {
+  try {
+    // Extract the workout ID and exercise ID from the request parameters.
+    const { id, exerciseId } = req.params;
+    // Find the workout with the specified ID in the database.
+    const workout = await Workout.findById(id);
+    // If the workout doesn't exist, throw an error with a message.
+    if (!workout) throw new Error("Workout not found");
+    // Get the exercise to update from the workout using its ID.
+    const updateExercise = workout.exercises.id(exerciseId);
+    // If the exercise doesn't exist in the workout, throw an error with a message.
+    if (!updateExercise) throw new Error("Exercise not found");
+    // Update the exercise properties with the values from the request body.
+    updateExercise.set(req.body);
+    // Save the changes to the database.
+    await workout.save();
+    // Return a JSON response with the updated exercise.
+    return res.json(updateExercise);
+  } catch (err) {
+    // If an error occurs, log the error to the console and return a 404 Not Found status with a JSON response containing the error message.
+    console.log(err);
+    return res.status(404).json({ message: err.message });
+  }
+});
+
 module.exports = router;
