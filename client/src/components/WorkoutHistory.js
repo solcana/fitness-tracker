@@ -35,7 +35,7 @@ export class WorkoutHistory extends Component {
 
   handleEditWorkout = (workout) => {
     console.log("Edit Workout");
-    this.setState({ showEditModal: true, workoutToEdit: workout });
+    // this.setState({ showEditModal: true, workoutToEdit: workout });
   }
 
   handleDeleteWorkout = (id) => {
