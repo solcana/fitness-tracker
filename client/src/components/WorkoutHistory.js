@@ -30,6 +30,14 @@ export class WorkoutHistory extends Component {
     console.log(apiUrl + "/workout");
   };
 
+  handleEditWorkout = () => {
+    console.log("Edit Workout");
+  }
+
+  handleDeleteWorkout = () => {
+    console.log("Deleted Workout");
+  }
+
   //   render() {
   //     return (
   //       <Card style={{ width: "100%" }} border="primary">
@@ -65,6 +73,7 @@ export class WorkoutHistory extends Component {
 
   render() {
     const workoutList = this.state.workouts.map((workout, index) => {
+      console.log(workout);
       return (
         <div key={index}>
           <Card style={{ width: "100%" }} border="primary">
@@ -81,10 +90,10 @@ export class WorkoutHistory extends Component {
                   {workout.name ? workout.name : "Default Exercise Name"}
                 </Card.Title>
                 <div className="d-flex ml-auto">
-                  <div className="btn">
+                  <div className="btn" onClick={this.handleEditWorkout}>
                       <i className="fas fa-gear"></i>
                   </div>
-                  <div className="btn">
+                  <div className="btn" onClick={this.handleDeleteWorkout}>
                       <i className="fas fa-trash"></i>
                   </div>
                 </div>
