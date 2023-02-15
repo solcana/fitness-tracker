@@ -4,6 +4,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import ExerciseHistory from "./ExerciseHistory";
 import apiUrl from "./apiConfig";
 import axios from "axios";
+import WorkoutHistoryItem from "./WorkoutHistoryItem";
 
 export class WorkoutHistory extends Component {
   constructor(props) {
@@ -34,8 +35,21 @@ export class WorkoutHistory extends Component {
     console.log("Edit Workout");
   }
 
-  handleDeleteWorkout = () => {
-    console.log("Deleted Workout");
+  handleDeleteWorkout = (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this workout?");
+    if(confirmDelete) {
+      axios
+      .delete(apiUrl + "/workout/" + id)
+      .then((response) => {
+        const updatedWorkouts = this.state.workouts.filter(
+          (workout) => workout._id !== id
+        );
+        this.setState({ workouts: updatedWorkouts });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   }
 
   //   render() {
@@ -76,41 +90,10 @@ export class WorkoutHistory extends Component {
       console.log(workout);
       return (
         <div key={index}>
-          <Card style={{ width: "100%" }} border="primary">
-            <Card.Body>
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Card.Title style={{ textAlign: "left" }}>
-                  {workout.name ? workout.name : "Default Exercise Name"}
-                </Card.Title>
-                <div className="d-flex ml-auto">
-                  <div className="btn" onClick={this.handleEditWorkout}>
-                      <i className="fas fa-gear"></i>
-                  </div>
-                  <div className="btn" onClick={this.handleDeleteWorkout}>
-                      <i className="fas fa-trash"></i>
-                  </div>
-                </div>
-              </div>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-              {workout.exercises.map((exercise, index) => (
-                <ListGroup.Item key={index}>
-                  <ExerciseHistory
-                    exerciseName={exercise.name}
-                    weight={exercise.weight}
-                    reps={exercise.reps}
-                  />
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          </Card>
+          <WorkoutHistoryItem 
+            workout={workout} 
+            handleDeleteWorkout={this.handleDeleteWorkout}
+            handleEditWorkout={this.handleEditWorkout} />
         </div>
       );
     });
