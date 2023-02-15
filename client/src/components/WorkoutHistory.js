@@ -35,8 +35,13 @@ export class WorkoutHistory extends Component {
 
   handleEditWorkout = (workout) => {
     console.log("Edit Workout");
+<<<<<<< HEAD
     this.setState({ showEditModal: true, workoutToEdit: workout });
   };
+=======
+    // this.setState({ showEditModal: true, workoutToEdit: workout });
+  }
+>>>>>>> fe8ac484fba35a5c18c9eaf7b7d8a82f09608a36
 
   handleDeleteWorkout = (id) => {
     const confirmDelete = window.confirm(
@@ -57,42 +62,8 @@ export class WorkoutHistory extends Component {
     }
   };
 
-  //   render() {
-  //     return (
-  //       <Card style={{ width: "100%" }} border="primary">
-  //         <Card.Body>
-  //           <div
-  //             style={{
-  //               width: "100%",
-  //               display: "flex",
-  //               justifyContent: "flex-end",
-  //               alignItems: "center",
-  //             }}
-  //           >
-  //             <i className="fa-solid fa-gear"></i>
-  //             <i
-  //               className="fa-solid fa-delete-left"
-  //               style={{ marginLeft: "10px" }}
-  //             ></i>
-  //             <Card.Title style={{ marginLeft: "auto" }}>
-  //               Monday Workout
-  //             </Card.Title>
-  //           </div>
-  //         </Card.Body>
-  //         <ListGroup className="list-group-flush">
-  //           <ListGroup.Item>
-  //             <ExerciseHistory exerciseName="Lunges" weight="15" reps="2" />
-  //           </ListGroup.Item>
-  //         </ListGroup>
-  //         <button onClick={this.apiTest}>Show Workouts</button>
-  //       </Card>
-  //     );
-  //   }
-  // }
-
   render() {
     const workoutList = this.state.workouts.map((workout, index) => {
-      console.log(workout);
       return (
         <div key={index}>
           <WorkoutHistoryItem

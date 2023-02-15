@@ -13,6 +13,8 @@ const db = require("./config/db");
 //Require users from the database
 const user = require("./seedData/userSeed");
 
+const User = require("./models/user");
+
 // Connect to MongoDB database
 mongoose.connect(db, {
 	useNewUrlParser: true,
@@ -73,7 +75,6 @@ app.get("/test", (req, res) => {
 app.post("/api/login", (req, res) => {
 	//verify that they are supplying username and password
 	if (req.body.username && req.body.password) {
-
 		// search for the user in the database
 		User.findOne(
 			{ username: req.body.username, password: req.body.password },
@@ -181,7 +182,7 @@ app.post("/api/register", (req, res) => {
 		);
 	} else {
 		res
-			.status(400)
+			.status(401)
 			.json({ error: "Username, Password, Firstname & Lastname Required" });
 	}
 });

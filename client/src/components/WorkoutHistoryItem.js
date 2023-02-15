@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import ExerciseHistory from "./ExerciseHistory";
+import WorkoutEditModal from "./WorkoutEditModal";
 
 class WorkoutHistoryItem extends Component {
     constructor(props) {
@@ -25,9 +26,10 @@ class WorkoutHistoryItem extends Component {
                     {this.props.workout.name ? this.props.workout.name : "Default Exercise Name"}
                     </Card.Title>
                     <div className="d-flex ml-auto">
-                    <div className="btn" onClick={this.props.handleEditWorkout}>
+                        <WorkoutEditModal workout={this.props.workout}/>
+                    {/* <div className="btn" onClick={this.props.handleEditWorkout}>
                         <i className="fas fa-gear"></i>
-                    </div>
+                    </div> */}
                     <div className="btn" onClick={() => this.props.handleDeleteWorkout(this.props.workout._id)}>
                         <i className="fas fa-trash"></i>
                     </div>
