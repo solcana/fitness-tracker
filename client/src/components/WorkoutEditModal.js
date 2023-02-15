@@ -32,12 +32,19 @@ class WorkoutEditModal extends Component {
   };
 
   handleEditWorkout = () => {
+    console.log(this.props.workout._id)
     axios
       .patch(apiUrl + `/workout/${this.props.workout._id}`, {
         "workout":
             {
                 "name": this.state.workoutName
             }
+      })
+      .then((response) => {
+        console.log("Testing:", response.data.workout);
+        // console.log(response.data.workout);
+        // this.props.handleEditWorkout(response.data.workout);
+        this.props.handleEditWorkout(response.data.workout);
       })
       .catch((error) => {
         if (error.response) {
