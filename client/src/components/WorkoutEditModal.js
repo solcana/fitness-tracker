@@ -34,32 +34,30 @@ class WorkoutEditModal extends Component {
 
   handleEditWorkout = () => {
     console.log("Editing workout");
-    // axios
-    //   .post(apiUrl + `/workout/${this.props.latestWorkoutId}/exercises`, {
-    //     "exercise":
-    //         {
-    //             "name": this.state.exerciseName,
-    //             "weight": this.state.exerciseWeight,
-    //             "reps": this.state.exerciseReps,
-    //         }
+    axios
+      .patch(apiUrl + `/workout/${this.props.workout._id}`, {
+        "workout":
+            {
+                "name": this.state.workoutName
+            }
+      })
+    //   .then((response) => {
+    //     console.log(response);
     //   })
-    // //   .then((response) => {
-    // //     console.log(response);
-    // //   })
-    //   .catch((error) => {
-    //     if (error.response) {
-    //       //response status is an error code
-    //       console.log(error.response.status);
-    //     } else if (error.request) {
-    //       //response not received though the request was sent
-    //       console.log(error.request);
-    //     } else {
-    //       //an error occurred when setting up the request
-    //       console.log(error.message);
-    //     }
-    //   });
+      .catch((error) => {
+        if (error.response) {
+          //response status is an error code
+          console.log(error.response.status);
+        } else if (error.request) {
+          //response not received though the request was sent
+          console.log(error.request);
+        } else {
+          //an error occurred when setting up the request
+          console.log(error.message);
+        }
+      });
 
-    // this.setState({ show: false });
+    this.setState({ show: false });
   };
 
   render() {
