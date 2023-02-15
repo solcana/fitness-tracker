@@ -8,26 +8,26 @@ class UserRegisterModal extends Component {
 		super(props);
 
 		this.state = {
-			firstName: "",
-			lastName: "",
+			firstname: "",
+			lastname: "",
 			username: "",
 			password: "",
 		};
 	}
 	onChangeFirstName = (e) => {
 		this.setState({
-			firstName: e.target.value,
+			firstname: e.target.value,
 		});
-		const firstName = this.state.firstName;
-		console.log(firstName);
+		const firstname = this.state.firstname;
+		console.log(firstname);
 	};
 
 	onChangeLastName = (e) => {
 		this.setState({
-			lastName: e.target.value,
+			lastname: e.target.value,
 		});
-		const lastName = this.state.lastName;
-		console.log(lastName);
+		const lastname = this.state.lastname;
+		console.log(lastname);
 	};
 
 	onChangeUsername = (e) => {
@@ -68,8 +68,8 @@ class UserRegisterModal extends Component {
 		e.preventDefault();
 
 		const user = {
-			firstName: this.state.firstName,
-			lastName: this.state.lastName,
+			firstname: this.state.firstname,
+			lastname: this.state.lastname,
 			username: this.state.username,
 			password: this.state.password,
 		};
@@ -107,8 +107,8 @@ class UserRegisterModal extends Component {
 				}
 
 				this.setState({
-					firstName: "",
-					lastName: "",
+					firstname: "",
+					lastname: "",
 					username: "",
 					password: "",
 				});
@@ -126,25 +126,25 @@ class UserRegisterModal extends Component {
 					</Modal.Header>
 
 					<Modal.Body>
-						<Form onSubmit={this.onSubmit}>
-							<Form.Group controlId="formFirstName">
+						<Form>
+							<Form.Group controlId="formfirstname">
 								<Form.Label>First Name</Form.Label>
 								<InputGroup>
 									<InputGroup.Text></InputGroup.Text>
 									<FormControl
-										type="name"
+										type="text"
 										placeholder="First Name"
 										onChange={this.onChangeFirstName}
 									/>
 								</InputGroup>
 								<Form.Text className="text-muted">* Required</Form.Text>
 							</Form.Group>
-							<Form.Group controlId="formLastName">
+							<Form.Group controlId="formlastname">
 								<Form.Label>Last Name</Form.Label>
 								<InputGroup>
 									<InputGroup.Text></InputGroup.Text>
 									<FormControl
-										type="name"
+										type="text"
 										placeholder="Last Name"
 										onChange={this.onChangeLastName}
 									/>
@@ -157,6 +157,7 @@ class UserRegisterModal extends Component {
 								<InputGroup>
 									<InputGroup.Text></InputGroup.Text>
 									<FormControl
+										type="text"
 										placeholder="Enter Username"
 										onChange={this.onChangeUsername}
 									/>
@@ -169,6 +170,7 @@ class UserRegisterModal extends Component {
 								<InputGroup>
 									<InputGroup.Text></InputGroup.Text>
 									<FormControl
+										type="password"
 										placeholder="Enter Password"
 										onChange={this.onChangePassword}
 									/>
@@ -185,7 +187,7 @@ class UserRegisterModal extends Component {
 							Close
 						</Button>
 						<Button
-							// onClick={this.handleAddExercise}
+							onClick={this.onSubmit}
 							variant="primary">
 							Register
 						</Button>
