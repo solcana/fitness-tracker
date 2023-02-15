@@ -73,18 +73,21 @@ export class WorkoutHistory extends Component {
                 style={{
                   width: "100%",
                   display: "flex",
-                  justifyContent: "flex-end",
+                  justifyContent: "space-between",
                   alignItems: "center",
                 }}
               >
-                <i className="fa-solid fa-gear"></i>
-                <i
-                  className="fa-solid fa-delete-left"
-                  style={{ marginLeft: "10px" }}
-                ></i>
-                <Card.Title style={{ marginLeft: "auto" }}>
-                  {workout.name}
+                <Card.Title style={{ textAlign: "left" }}>
+                  {workout.name ? workout.name : "Default Exercise Name"}
                 </Card.Title>
+                <div className="d-flex ml-auto">
+                  <div className="btn">
+                      <i className="fas fa-gear"></i>
+                  </div>
+                  <div className="btn">
+                      <i className="fas fa-trash"></i>
+                  </div>
+                </div>
               </div>
             </Card.Body>
             <ListGroup className="list-group-flush">
