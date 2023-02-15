@@ -98,7 +98,12 @@ class UserRegisterModal extends Component {
 
 				if (err.response && err.response.status === 400) {
 					// Invalid input data
-					toast.warning("Invalid input data", {
+					toast.warning("User already exists", {
+						autoClose: 2000,
+					});
+				} else if (err.response && err.response.status === 401) {
+					// Invalid input data
+					toast.warning("All fields required", {
 						autoClose: 2000,
 					});
 				} else {

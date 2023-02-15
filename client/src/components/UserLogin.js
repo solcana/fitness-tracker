@@ -77,7 +77,7 @@ class UserLogin extends Component {
 					});
 				} else if (err.response && err.response.status === 400) {
 					// Username field is required
-					toast.warning("Username is required", {
+					toast.warning("Username and password is required", {
 						autoClose: 2000,
 					});
 				} else {
