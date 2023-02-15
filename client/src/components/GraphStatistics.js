@@ -12,8 +12,8 @@ function Graph() {
     const newPullUps = parseInt(e.target.pullUps.value);
     const newSitUps = parseInt(e.target.sitUps.value);
     const newBenchPress = parseInt(e.target.benchPress.value);
-    const newCurls = parseInt(e.target.curls.value);
-    setData([...data, { date: newDate, pushUps: newPushUps, pullUps: newPullUps, sitUps: newSitUps, benchPress: newBenchPress, curls: newCurls }]);
+    const newSquats = parseInt(e.target.squats.value);
+    setData([...data, { date: newDate, pushUps: newPushUps, pullUps: newPullUps, sitUps: newSitUps, benchPress: newBenchPress, squats: newSquats }]);
     e.target.reset();
   };
 
@@ -42,8 +42,8 @@ function Graph() {
           <Form.Control type="number" name="benchPress" required />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Curls</Form.Label>
-          <Form.Control type="number" name="curls" required />
+          <Form.Label>Squats</Form.Label>
+          <Form.Control type="number" name="squats" required />
         </Form.Group>
         <Button type="submit">Add Data</Button>
       </Form>
@@ -59,7 +59,7 @@ function Graph() {
           <Line type="monotone" dataKey="pullUps" stroke="#82ca9d" activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="sitUps" stroke="#ffc658" activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="benchPress" stroke="#ff7300" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="curls" stroke="#00bcd4" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="squats" stroke="#00bcd4" activeDot={{ r: 8 }} />
         </LineChart>
       </ResponsiveContainer>
     </Container>
