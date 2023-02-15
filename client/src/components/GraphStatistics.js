@@ -27,9 +27,9 @@ function Graph() {
           <Form.Control type="text" name="workout" required />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Reps</Form.Label>
+          <Form.Label>Intensity</Form.Label>
           <Form.Control as="select" name="reps">
-            {[...Array(50)].map((_, i) => (
+            {[...Array(10)].map((_, i) => (
               <option key={i + 1}>{i + 1}</option>
             ))}
           </Form.Control>
