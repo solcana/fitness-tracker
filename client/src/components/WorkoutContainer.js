@@ -2,10 +2,10 @@
 
 import React, { Component } from "react";
 import ExerciseInputModal from "./ExerciseInputModal";
-import ExerciseItem from "./ExerciseItem";
 import axios from 'axios';
 import apiUrl from "./apiConfig";
 import { Button } from "react-bootstrap";
+import WorkoutHistoryItem from "./WorkoutHistoryItem";
 
 class WorkoutContainer extends Component {
     constructor(props) {
@@ -56,6 +56,7 @@ class WorkoutContainer extends Component {
                 const latestWorkoutExercises = latestWorkout.exercises
                 const latestWorkoutId = latestWorkout._id;
 
+                this.setState({ latestWorkout: latestWorkout })
                 this.setState({ latestWorkoutId: latestWorkoutId });
                 this.setState({ workoutExercises: latestWorkoutExercises })
             })
@@ -72,8 +73,11 @@ class WorkoutContainer extends Component {
                     <Button onClick={this.handleAddWorkout}>Start New Workout</Button>
                 </div>
 
-                <ExerciseItem />
-                
+                {this.state.latestWorkout &&
+                <WorkoutHistoryItem
+                    workout={this.state.latestWorkout} />
+                }
+
                 {this.state.workoutExercises && this.state.workoutExercises[2] && <p>Here is the ID: {this.state.workoutExercises[2]._id}</p>}
                 <div className="d-flex justify-content-center">
                     <ExerciseInputModal
