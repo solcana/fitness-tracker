@@ -10,29 +10,29 @@ class ProfilePicModal extends Component {
 		super(props);
 
 		this.state = {
-			visible: false,
+			open: false,
 			imagesArray: [props.usman_pic, props.Coffee, props.coffeeheart],
 		};
 	}
 
 	showModal = () => {
-		this.setState({ visible: true });
+		this.setState({ open: true });
 	};
 
 	handleOk = (e) => {
 		console.log(e);
-		this.setState({ visible: false });
+		this.setState({ open: false });
 	};
 
 	handleCancel = (e) => {
 		console.log(e);
-		this.setState({ visible: false });
+		this.setState({ open: false });
 	};
 
 	selectProfileImage = (profileImage) => {
 		this.props.handleImageChange(profileImage);
 		this.setState({
-			visible: false,
+			open: false,
 		});
 	};
 
@@ -47,7 +47,7 @@ class ProfilePicModal extends Component {
 				<Modal
 					centered
 					title="Usman's Profile"
-					visible={this.state.visible}
+					open={this.state.open}
 					onOk={this.handleOk}
 					onCancel={this.handleCancel}>
 					<p>I like to eat lots of popcorn...</p>
@@ -57,19 +57,19 @@ class ProfilePicModal extends Component {
 						<img
 							src={usman_pic}
 							alt="usman_pic"
-							style={{ width: "33.33%", height: "auto", cursor: "pointer" }}
+							style={{ width: "20%", height: "auto", cursor: "pointer" }}
 							onClick={() => this.selectProfileImage(usman_pic)}
 						/>
 						<img
 							src={Coffee}
 							alt="Coffee"
-							style={{ width: "33.33%", height: "auto", cursor: "pointer" }}
+							style={{ width: "20%", height: "auto", cursor: "pointer" }}
 							onClick={() => this.selectProfileImage(Coffee)}
 						/>
 						<img
 							src={coffeeheart}
 							alt="coffeeheart"
-							style={{ width: "33.33%", height: "auto", cursor: "pointer" }}
+							style={{ width: "20%", height: "auto", cursor: "pointer" }}
 							onClick={() => this.selectProfileImage(coffeeheart)}
 						/>
 					</div>
