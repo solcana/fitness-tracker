@@ -1,13 +1,13 @@
 const userSeedData = [
 	{
-		firstName: "Usman",
-		lastName: "Bashir",
+		firstname: "Usman",
+		lastname: "Bashir",
 		username: "Usman1",
 		password: "pass",
 	},
 	{
-		firstName: "Joan",
-		lastName: "Kalanzi",
+		firstname: "Joan",
+		lastname: "Kalanzi",
 		username: "Joan1",
 		password: "pass",
 	},
