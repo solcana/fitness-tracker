@@ -1,4 +1,5 @@
 //Require necessary NPM Package
+const { request } = require("express");
 const express = require("express");
 
 //Require Mongoose Model for Workout
@@ -139,6 +140,33 @@ router.post("/api/workout", (req, res) => {
 });
 
 /**
+ * Action:         INDEX
+ * Method:         HTTP GET method
+ * URI:            /api/workout/workoutID/exercises
+ * Description:    Get All exercises of a specific workout (what the route is going to do)
+ */
+
+router.get("/api/workout/:id/exercises", (req, res) => {
+  Workout.findById(req.params.id)
+    .then((workout) => {
+      if (!workout) {
+        res.status(404).json({
+          error: {
+            name: "DocumentNotFoundError",
+            message: "The provided workout ID doesn't match any documents",
+          },
+        });
+      } else {
+        console.log("Exercises found:", workout.exercises);
+        res.status(200).json({ exercises: workout.exercises });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error });
+    });
+});
+
+/**
  * Action:         CREATE
  * Method:         POST
  * URI:            /api/workout/:id/exercises
@@ -167,5 +195,35 @@ router.post("/api/workout/:id/exercises", (req, res) => {
       res.status(500).json({ error: error });
     });
 });
+
+/**
+ * Action:         DELETE
+ * Method:         DELETE HTTP
+ * URI:            /api/workout/:id/exercises/:id
+ * Description:    Delete an exercise for a given workout
+ */
+
+router.delete("/api/workout/:id/exercises/:exerciseId", async (req, res) => {
+  try {
+    const { id, exerciseId } = req.params;
+    const workout = await Workout.findById(id);
+    if (!workout) throw new Error("Workout not found");
+    const deleteExercise = workout.exercises.id(exerciseId);
+    if (!deleteExercise) throw new Error("Exercise not found");
+    await deleteExercise.remove();
+    await workout.save();
+    return res.status(204).send();
+  } catch (err) {
+    console.log(err);
+    return res.status(404).json({ message: err.message });
+  }
+});
+
+/**
+ * Action:         UPDATE
+ * Method:         UPDATE HTTP
+ * URI:            /api/workout/:id/exercises/:id
+ * Description:    Update an exercise for a given workout
+ */
 
 module.exports = router;
