@@ -5,6 +5,7 @@ import ExerciseInputModal from "./ExerciseInputModal";
 import ExerciseItem from "./ExerciseItem";
 import axios from 'axios';
 import apiUrl from "./apiConfig";
+import { Button } from "react-bootstrap";
 
 class WorkoutContainer extends Component {
     constructor(props) {
@@ -20,6 +21,30 @@ class WorkoutContainer extends Component {
         this.setState(prevState => ({
             workoutExercises: [...prevState.workoutExercises, exercise]
         }));
+    }
+
+    handleAddWorkout = () => {
+        console.log("Add Workout");
+
+        axios
+        .post(apiUrl + `/workout/`, {
+          "workout":
+              {
+                  "exercises": []
+              }
+        })
+        .catch((error) => {
+          if (error.response) {
+            //response status is an error code
+            console.log(error.response.status);
+          } else if (error.request) {
+            //response not received though the request was sent
+            console.log(error.request);
+          } else {
+            //an error occurred when setting up the request
+            console.log(error.message);
+          }
+        });
     }
 
     componentDidMount = () => {
@@ -43,7 +68,12 @@ class WorkoutContainer extends Component {
         return (
             <>
                 <h5>WorkoutContainer</h5>
+                <div className="d-flex justify-content-center">
+                    <Button onClick={this.handleAddWorkout}>Start New Workout</Button>
+                </div>
+
                 <ExerciseItem />
+                
                 {this.state.workoutExercises && this.state.workoutExercises[2] && <p>Here is the ID: {this.state.workoutExercises[2]._id}</p>}
                 <div className="d-flex justify-content-center">
                     <ExerciseInputModal
