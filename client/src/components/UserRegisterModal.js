@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Modal, Form, InputGroup, FormControl } from "react-bootstrap";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 class UserRegisterModal extends Component {
 	constructor(props) {
@@ -86,7 +86,7 @@ class UserRegisterModal extends Component {
 				toast.success("Registration successful!", {
 					autoClose: 1000,
 				});
-				console.log("Successfully logged in");
+				console.log("Registration successful");
 				// Redirect the user to the home page after a delay of 2 seconds
 				setTimeout(() => {
 					window.location = "/profile";
@@ -95,14 +95,10 @@ class UserRegisterModal extends Component {
 
 			.catch((err) => {
 				console.error("There was an Error: ", err);
-				if (err.response && err.response.status === 401) {
-					// Incorrect username or password
-					toast.error("Incorrect username or password", {
-						autoClose: 2000,
-					});
-				} else if (err.response && err.response.status === 400) {
-					// Username field is required
-					toast.warning("Username is required", {
+
+				if (err.response && err.response.status === 400) {
+					// Invalid input data
+					toast.warning("Invalid input data", {
 						autoClose: 2000,
 					});
 				} else {
@@ -111,6 +107,8 @@ class UserRegisterModal extends Component {
 				}
 
 				this.setState({
+					firstName: "",
+					lastName: "",
 					username: "",
 					password: "",
 				});

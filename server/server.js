@@ -117,11 +117,12 @@ app.post("/api/register", (req, res) => {
 	console.log("Register POST request - 1");
 	// verify that they are supplying all required information
 	if (
-		req.body.username &&
-		req.body.password &&
 		req.body.firstname &&
-		req.body.lastname
+		req.body.lastname &&
+		req.body.password &&
+		req.body.username
 	) {
+		console.log("Test2: ", req.body.username);
 		// check if user already exists in the database
 		User.findOne(
 			{
