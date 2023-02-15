@@ -1,5 +1,6 @@
 const workoutSeedData = [
     {
+        name: "Morning Workout on 10/02/2023",
         startDate: new Date(2023, 02, 02, 14, 33, 12),
         completed: true,
         exercises: [
@@ -21,6 +22,7 @@ const workoutSeedData = [
             }
         ],
     },{
+        name: "Afternoon Workout on 11/02/2023",
         startDate: new Date(2023, 02, 04, 12, 33, 12),
         completed: true,
         exercises: [

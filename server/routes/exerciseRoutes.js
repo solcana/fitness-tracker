@@ -99,7 +99,7 @@ router.patch("/api/workout/:id", (req, res) => {
     .then((workout) => {
       if (workout) {
         //Pass the result of Mongooses `.update` method to the next `.then` on the promise chain
-        return workout.update(req.body.workout);
+        return workout.updateOne(req.body.workout);
       } else {
         //If we couldn't find a document with the matching ID
         res.status(404).json({
@@ -111,9 +111,13 @@ router.patch("/api/workout/:id", (req, res) => {
       }
     })
     .then(() => {
-      //If the update succeeded, return 204(no content) and no JSON
-      res.status(204).end();
-    })
+		// Retrieve the updated workout object from the database
+		return Workout.findById(req.params.id);
+	  })
+	  .then((updatedWorkout) => {
+		// Return the updated workout object in the response
+		res.json({ workout: updatedWorkout });
+	  })
     // catch any errors that might occur
     .catch((error) => {
       res.status(500).json({ error: error });

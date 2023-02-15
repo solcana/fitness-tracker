@@ -44,3 +44,9 @@
 #### ERD
 
 ![Entity Relationship Diagram](/assets/Images/ERD.png)
+
+
+## To DO
+
+- [ ] Add delete for exercises
+- [ ] Fix login for hashed password authentication

@@ -33,11 +33,6 @@ export class WorkoutHistory extends Component {
     console.log(apiUrl + "/workout");
   };
 
-  handleEditWorkout = (workout) => {
-    console.log("Edit Workout");
-    // this.setState({ showEditModal: true, workoutToEdit: workout });
-  };
-
   handleDeleteWorkout = (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this workout?"
@@ -55,6 +50,21 @@ export class WorkoutHistory extends Component {
           console.log(error);
         });
     }
+  };
+
+  handleEditWorkout = (updatedWorkout) => {
+    console.log("Updated workout: ", updatedWorkout);
+
+    const updatedWorkouts = this.state.workouts.map((workout) => {
+      console.log(workout);
+      if (workout._id === updatedWorkout._id) {
+        return updatedWorkout;
+      } else {
+        return workout;
+      }
+    });
+
+    this.setState({ workouts: updatedWorkouts });
   };
 
   render() {
