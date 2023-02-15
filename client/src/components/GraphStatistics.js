@@ -8,9 +8,12 @@ function Graph() {
   const handleAddData = (e) => {
     e.preventDefault();
     const newDate = e.target.date.value;
-    const newWorkout = e.target.workout.value;
-    const newReps = parseInt(e.target.reps.value);
-    setData([...data, { date: newDate, workout: newWorkout, reps: newReps }]);
+    const newPushUps = parseInt(e.target.pushUps.value);
+    const newPullUps = parseInt(e.target.pullUps.value);
+    const newSitUps = parseInt(e.target.sitUps.value);
+    const newBenchPress = parseInt(e.target.benchPress.value);
+    const newSquats = parseInt(e.target.squats.value);
+    setData([...data, { date: newDate, pushUps: newPushUps, pullUps: newPullUps, sitUps: newSitUps, benchPress: newBenchPress, squats: newSquats }]);
     e.target.reset();
   };
 
@@ -23,16 +26,24 @@ function Graph() {
           <Form.Control type="date" name="date" required />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Workout Name</Form.Label>
-          <Form.Control type="text" name="workout" required />
+          <Form.Label>Push-ups</Form.Label>
+          <Form.Control type="number" name="pushUps" required />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Intensity</Form.Label>
-          <Form.Control as="select" name="reps">
-            {[...Array(10)].map((_, i) => (
-              <option key={i + 1}>{i + 1}</option>
-            ))}
-          </Form.Control>
+          <Form.Label>Pull-ups</Form.Label>
+          <Form.Control type="number" name="pullUps" required />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Sit-ups</Form.Label>
+          <Form.Control type="number" name="sitUps" required />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Bench Press</Form.Label>
+          <Form.Control type="number" name="benchPress" required />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Squats</Form.Label>
+          <Form.Control type="number" name="squats" required />
         </Form.Group>
         <Button type="submit">Add Data</Button>
       </Form>
@@ -44,7 +55,11 @@ function Graph() {
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="reps" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="pushUps" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="pullUps" stroke="#82ca9d" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="sitUps" stroke="#ffc658" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="benchPress" stroke="#ff7300" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="squats" stroke="#00bcd4" activeDot={{ r: 8 }} />
         </LineChart>
       </ResponsiveContainer>
     </Container>
