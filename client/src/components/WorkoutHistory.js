@@ -36,24 +36,26 @@ export class WorkoutHistory extends Component {
   handleEditWorkout = (workout) => {
     console.log("Edit Workout");
     this.setState({ showEditModal: true, workoutToEdit: workout });
-  }
+  };
 
   handleDeleteWorkout = (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this workout?");
-    if(confirmDelete) {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this workout?"
+    );
+    if (confirmDelete) {
       axios
-      .delete(apiUrl + "/workout/" + id)
-      .then((response) => {
-        const updatedWorkouts = this.state.workouts.filter(
-          (workout) => workout._id !== id
-        );
-        this.setState({ workouts: updatedWorkouts });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .delete(apiUrl + "/workout/" + id)
+        .then((response) => {
+          const updatedWorkouts = this.state.workouts.filter(
+            (workout) => workout._id !== id
+          );
+          this.setState({ workouts: updatedWorkouts });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-  }
+  };
 
   //   render() {
   //     return (
@@ -93,10 +95,11 @@ export class WorkoutHistory extends Component {
       console.log(workout);
       return (
         <div key={index}>
-          <WorkoutHistoryItem 
-            workout={workout} 
+          <WorkoutHistoryItem
+            workout={workout}
             handleDeleteWorkout={this.handleDeleteWorkout}
-            handleEditWorkout={this.handleEditWorkout} />
+            handleEditWorkout={this.handleEditWorkout}
+          />
         </div>
       );
     });
