@@ -9,13 +9,9 @@ function HistoryContainer() {
   return (
     <div className="historyContainerDiv">
       <Container>
-        <Row>
-          <Col xs={6}>
-            <Card body className="historyContainer" border="secondary">
-              <WorkoutHistory />
-            </Card>
-          </Col>
-        </Row>
+        <Card body className="historyContainer" border="secondary">
+          <WorkoutHistory />
+        </Card>
       </Container>
     </div>
   );
