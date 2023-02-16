@@ -41,7 +41,7 @@ class ProfilePicChanger extends Component {
 				</Row>
 				<Row className="justify-content-md-center">
 					<Col md="auto">
-						<h2>Usman</h2>
+						<h2>{this.props.username}</h2>
 					</Col>
 				</Row>
 				<Row className="justify-content-md-center">
