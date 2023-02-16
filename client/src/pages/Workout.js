@@ -6,7 +6,7 @@ class Workout extends Component {
     render() {
         return(
             <Container>
-                <WorkoutContainer />
+                <WorkoutContainer userID={this.props.userID}/>
             </Container>
         );
     }

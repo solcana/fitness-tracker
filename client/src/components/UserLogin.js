@@ -59,6 +59,8 @@ class UserLogin extends Component {
 				// If the server responds with a successful login, set a token in local storage
 				localStorage.setItem("token", response.data.token);
 
+				localStorage.setItem("userID", response.data.user._id);
+
 				// Call the onLogin function to update the username state in the parent component
 				this.props.onLogin(user.username);
 

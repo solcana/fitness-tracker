@@ -15,6 +15,7 @@ class App extends Component {
 		this.state = {
 			username: localStorage.getItem("username") || "",
 			isLoggedIn: localStorage.getItem("isLoggedIn") || false,
+			userID: localStorage.getItem("userID") || ""
 		};
 	}
 
@@ -46,11 +47,12 @@ class App extends Component {
 					{/* <Route exact path="/" element={<Login />} /> */}
 					<Route
 						path="/profile"
-						element={<Profile username={this.state.username} />}
+						element={<Profile 	username={this.state.username}
+											userID={this.state.userID} />}
 					/>
 					<Route
 						path="/workout"
-						element={<Workout />}
+						element={<Workout userID={this.state.userID}/>}
 					/>
 					<Route
 						path="/graph-statistics"
