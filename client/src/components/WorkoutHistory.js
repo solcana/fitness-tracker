@@ -28,10 +28,6 @@ export class WorkoutHistory extends Component {
       });
   }
 
-  apiTest = () => {
-    console.log(apiUrl + "/workout");
-  };
-
   handleDeleteWorkout = (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this workout?"
