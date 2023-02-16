@@ -204,15 +204,5 @@ app.get(
   }
 );
 
-User.findOne({ username: "Usman1" })
-  .populate("workouts") // populate the workouts field to get the full workout document
-  .exec((err, user) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log(user);
-    }
-  });
-
 // Returns a statement saying the App is listening on our specified port
 app.listen(port, () => console.log(`App is listening on port ${port}`));

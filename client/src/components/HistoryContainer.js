@@ -5,20 +5,15 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function HistoryContainer() {
+function HistoryContainer(props) {
   return (
     <div className="historyContainerDiv">
-      <Container>
-        <Row>
-          <Col xs={6}>
-            <Card body className="historyContainer" border="secondary">
-              <WorkoutHistory />
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+      <Card body className="historyContainer" border="secondary">
+        <WorkoutHistory userID={props.userID}/>
+      </Card>
     </div>
   );
 }
 
 export default HistoryContainer;
+

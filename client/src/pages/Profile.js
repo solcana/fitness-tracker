@@ -7,7 +7,7 @@ class Profile extends Component {
     return (
       <Container>
         <h3>Profile Page</h3>
-        <HistoryContainer />
+        <HistoryContainer userID={this.props.userID}/>
       </Container>
     );
   }
