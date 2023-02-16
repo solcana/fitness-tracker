@@ -9,11 +9,33 @@ import ProfilePicChanger from "./components/ProfilePicChanger";
 import UserLogin from "./components/UserLogin";
 
 class App extends Component {
-	state = {};
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			username: "",
+			isLoggedIn: false,
+		};
+	}
+
+	handleLogin = (username) => {
+		this.setState({ username });
+	};
+
+	handleLogout = () => {
+		// Remove the token from local storage and update the state
+		localStorage.removeItem("token");
+		this.setState({ username: "", isLoggedIn: false });
+	};
+
 	render() {
 		return (
 			<>
-				<NavBar />
+				<NavBar
+					username={this.state.username}
+					isLoggedIn={this.state.isLoggedIn}
+					onLogout={this.handleLogout}
+				/>
 				<Routes>
 					{/* <Route exact path="/" element={<Login />} /> */}
 					<Route
@@ -34,7 +56,12 @@ class App extends Component {
 					/>
 					<Route
 						path="/user"
-						element={<UserLogin />}
+						element={
+							<UserLogin
+								onLogin={this.handleLogin}
+								onLogout={this.handleLogout}
+							/>
+						}
 					/>
 				</Routes>
 			</>

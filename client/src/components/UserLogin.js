@@ -54,9 +54,13 @@ class UserLogin extends Component {
 			.post(`http://localhost:5001/api/login`, user)
 			.then((response) => {
 				console.log("Response:", response.data);
+				console.log("UserLogin: ", user.username);
 
 				// If the server responds with a successful login, set a token in local storage
 				localStorage.setItem("token", response.data.token);
+
+				// Call the onLogin function to update the username state in the parent component
+				this.props.onLogin(user.username);
 
 				toast.success("Login successful!", {
 					autoClose: 1000,
@@ -70,6 +74,7 @@ class UserLogin extends Component {
 
 			.catch((err) => {
 				console.error("There was an Error: ", err);
+
 				if (err.response && err.response.status === 401) {
 					// Incorrect username or password
 					toast.error("Incorrect username or password", {
