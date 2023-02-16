@@ -42,8 +42,7 @@ mongoose.connection.once("open", () => {
       if (err) {
         console.log(err);
       } else {
-        const username = "Usman1";
-        User.findOne({ username: username }, (err, user) => {
+        User.findOne({ username: "Usman1" }, (err, user) => {
           if (err) {
             console.error(err);
             mongoose.connection.close();
