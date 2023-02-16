@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
+import Badge from "react-bootstrap/Badge";
 
 export class ExerciseHistory extends Component {
   render() {
@@ -7,13 +8,21 @@ export class ExerciseHistory extends Component {
       <div className="exerciseContainer">
         <div>{this.props.exerciseName}</div>
         <span className="weightAndReps">
-          <Card border="secondary" className="weightCard">
+          <Badge bg="primary" className="badge">
             <div>{this.props.weight} kg</div>
-          </Card>
-          <Card border="secondary" className="repsCard">
+          </Badge>
+          <Badge bg="primary" className="badge">
             <div>{this.props.reps} reps</div>
-          </Card>
-          <div className="btn" onClick={() => this.props.handleDeleteExercise(this.props.exercise._id, this.props.workoutID)}>
+          </Badge>
+          <div
+            className="btn"
+            onClick={() =>
+              this.props.handleDeleteExercise(
+                this.props.exercise._id,
+                this.props.workoutID
+              )
+            }
+          >
             <i className="fas fa-trash"></i>
           </div>
         </span>
