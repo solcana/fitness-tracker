@@ -6,6 +6,9 @@ import axios from 'axios';
 import apiUrl from "./apiConfig";
 import { Button } from "react-bootstrap";
 import WorkoutHistoryItem from "./WorkoutHistoryItem";
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 class WorkoutContainer extends Component {
     constructor(props) {
@@ -13,13 +16,15 @@ class WorkoutContainer extends Component {
         this.state = {
             latestWorkoutId: "",
             exercises: [],
-            activeWorkoutExercises: []
+            activeWorkoutExercises: [],
+            showTimer: false,
         };
     }
 
     handleAddExercise = (exercise) => {
         this.setState(prevState => ({
             activeWorkoutExercises: [...prevState.activeWorkoutExercises, exercise],
+            showTimer: true, // Set showTimer to true when a new exercise is added
         }), () => {
             const updatedLatestWorkout = { ...this.state.latestWorkout };
             updatedLatestWorkout.exercises = this.state.activeWorkoutExercises;
@@ -59,6 +64,13 @@ class WorkoutContainer extends Component {
         });
     }
 
+    onTimerComplete = () => {
+        this.setState({ showTimer: false })
+        toast("Get back to work! \uD83D\uDCAA", {
+            autoClose: 3000,
+        });
+    }
+
     componentDidMount = () => {
         // Get all workouts and select ID as last entry in database             // MAYBE CHANGE LATER TO BE LATEST CreatedAt DATE?
         axios.get(apiUrl + "/workout")
@@ -80,7 +92,8 @@ class WorkoutContainer extends Component {
     render() { 
         return (
             <>
-                <h5>WorkoutContainer</h5>
+				<ToastContainer />
+
                 <div className="d-flex justify-content-center">
                     <Button onClick={this.handleAddWorkout}>Start New Workout</Button>
                 </div>
@@ -95,6 +108,19 @@ class WorkoutContainer extends Component {
                     <ExerciseInputModal
                         onAddExercise={this.handleAddExercise}
                         latestWorkoutId={this.state.latestWorkoutId} />
+                </div>
+
+                <div className="d-flex justify-content-center">
+                    {this.state.showTimer && // Show the countdown timer when showTimer is true
+                    <CountdownCircleTimer
+                        isPlaying
+                        duration={7}
+                        colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+                        colorsTime={[7, 5, 2, 0]}
+                        onComplete={this.onTimerComplete}
+                    >
+                        {({ remainingTime }) => remainingTime}
+                    </CountdownCircleTimer>}
                 </div>
             </>
         );
