@@ -32,13 +32,12 @@ class WorkoutEditModal extends Component {
   };
 
   handleEditWorkout = () => {
-    console.log(this.props.workout._id)
+    console.log(this.props.workout._id);
     axios
       .patch(apiUrl + `/workout/${this.props.workout._id}`, {
-        "workout":
-            {
-                "name": this.state.workoutName
-            }
+        workout: {
+          name: this.state.workoutName,
+        },
       })
       .then((response) => {
         console.log("Testing:", response.data.workout);
@@ -66,7 +65,7 @@ class WorkoutEditModal extends Component {
     return (
       <>
         <div className="btn">
-            <i className="fas fa-gear" onClick={this.handleShow}></i>
+          <i className="fas fa-gear" onClick={this.handleShow}></i>
         </div>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
