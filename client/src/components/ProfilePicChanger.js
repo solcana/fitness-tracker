@@ -56,9 +56,9 @@ class ProfilePicChanger extends Component {
 
 	render() {
 		return (
-			<Container className="my-3">
-				<Row className="justify-content-md-center">
-					<Col md="auto">
+			<Container className="my-3 d-flex flex-column">
+				<Row className="d-flex justify-content-center align-items-center">
+					<Col md="auto" className="d-flex justify-content-center">
 						<Avatar
 							size={64}
 							icon={<UserOutlined />}
@@ -67,8 +67,8 @@ class ProfilePicChanger extends Component {
 					</Col>
 				</Row>
 				{this.props.isLoggedIn && (
-					<Row className="justify-content-md-center">
-						<Col md="auto">
+					<Row className="d-flex justify-content-md-center">
+						<Col md="auto" className="d-flex justify-content-center">
 							<h3>{this.props.username}</h3>
 						</Col>
 					</Row>
