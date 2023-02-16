@@ -21,7 +21,6 @@ export class WorkoutHistory extends Component {
     axios
       .get("http://localhost:5001/api/workout")
       .then((response) => {
-        console.log(response.data);
         this.setState({ workouts: response.data.workouts });
       })
       .catch((error) => {
@@ -75,7 +74,7 @@ export class WorkoutHistory extends Component {
           const updatedExercises = this.state.workouts
             .find((workout) => workout._id === workoutID)
             .exercises.filter((exercise) => exercise._id !== exerciseID);
-            
+
           const updatedWorkouts = [...this.state.workouts];
   
           // Find the index of the workout that was modified and update the exercises array for the modified workout

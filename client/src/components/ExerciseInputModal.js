@@ -22,7 +22,7 @@ class ExerciseInputModal extends Component {
 
   handleShow = () => {
     this.setState({ show: true });
-    axios.get(apiUrl + "/workout").then((res) => console.log(res));
+    axios.get(apiUrl + "/workout");
   };
 
   handleClose = () => {
