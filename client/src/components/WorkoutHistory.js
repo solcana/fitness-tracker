@@ -109,12 +109,7 @@ export class WorkoutHistory extends Component {
       );
     });
 
-    return (
-      <div>
-        {workoutList}
-        <button onClick={this.apiTest}>Show Workouts</button>
-      </div>
-    );
+    return <div>{workoutList}</div>;
   }
 }
 
