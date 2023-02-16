@@ -13,25 +13,37 @@ class WorkoutContainer extends Component {
         this.state = {
             latestWorkoutId: "",
             exercises: [],
-            workoutExercises: []
+            activeWorkoutExercises: []
         };
     }
 
     handleAddExercise = (exercise) => {
         this.setState(prevState => ({
-            workoutExercises: [...prevState.workoutExercises, exercise]
-        }));
+            activeWorkoutExercises: [...prevState.activeWorkoutExercises, exercise],
+        }), () => {
+            const updatedLatestWorkout = { ...this.state.latestWorkout };
+            updatedLatestWorkout.exercises = this.state.activeWorkoutExercises;
+            this.setState({
+                latestWorkout: updatedLatestWorkout
+            });
+        });
     }
 
     handleAddWorkout = () => {
-        console.log("Add Workout");
-
         axios
         .post(apiUrl + `/workout/`, {
           "workout":
               {
                   "exercises": []
               }
+        })
+        .then((response) => {
+            const newWorkout = response.data.workout;
+            this.setState({
+                latestWorkout: newWorkout,
+                latestWorkoutId: newWorkout._id,
+                activeWorkoutExercises: []
+            });
         })
         .catch((error) => {
           if (error.response) {
@@ -58,7 +70,7 @@ class WorkoutContainer extends Component {
 
                 this.setState({ latestWorkout: latestWorkout })
                 this.setState({ latestWorkoutId: latestWorkoutId });
-                this.setState({ workoutExercises: latestWorkoutExercises })
+                this.setState({ activeWorkoutExercises: latestWorkoutExercises })
             })
             .catch(error => {
                 console.log(error);
@@ -78,7 +90,7 @@ class WorkoutContainer extends Component {
                     workout={this.state.latestWorkout} />
                 }
 
-                {this.state.workoutExercises && this.state.workoutExercises[2] && <p>Here is the ID: {this.state.workoutExercises[2]._id}</p>}
+                {/* {this.state.activeWorkoutExercises && this.state.activeWorkoutExercises[2] && <p>Here is the ID: {this.state.activeWorkoutExercises[2]._id}</p>} */}
                 <div className="d-flex justify-content-center">
                     <ExerciseInputModal
                         onAddExercise={this.handleAddExercise}
