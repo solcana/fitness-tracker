@@ -58,7 +58,12 @@ class App extends Component {
 					/>
 					<Route
 						path="/profile-picture"
-						element={<ProfilePicChanger username={this.state.username} />}
+						element={
+							<ProfilePicChanger
+								username={this.state.username}
+								isLoggedIn={this.state.isLoggedIn}
+							/>
+						}
 					/>
 					<Route
 						path="/user"
