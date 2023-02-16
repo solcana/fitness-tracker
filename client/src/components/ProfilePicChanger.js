@@ -20,7 +20,8 @@ class ProfilePicChanger extends Component {
 
 		this.state = {
 			profileImage: "",
-			totalWorkouts: 0,
+			totalWorkouts: "Calculating...",
+			totalExercises: "Calculating..."
 		};
 	}
 
@@ -35,17 +36,19 @@ class ProfilePicChanger extends Component {
 		.then(response => {
 		const workouts = response.data.workouts;
 		const totalWorkouts = workouts.length;
+		let totalExercises = 0;
+        workouts.forEach(workout => {
+          totalExercises += workout.exercises.length;
+        });
 	
 		this.setState({
-			// workouts: workouts,
+			totalExercises: totalExercises,
 			totalWorkouts: totalWorkouts,
-			// loading: false,
 		});
 		})
 		.catch(error => {
 		console.log(error);
 		this.setState({
-			// loading: false,
 			error: "Failed to fetch workouts",
 		});
 		});
@@ -79,7 +82,7 @@ class ProfilePicChanger extends Component {
 								Total Workouts: {this.state.totalWorkouts}
 							</ListGroupItem>
 							<ListGroupItem className="list-item">
-								Workouts this week: 5
+								Total Exercises: {this.state.totalExercises}
 							</ListGroupItem>
 						</ListGroup>
 						<ProfilePicModal
