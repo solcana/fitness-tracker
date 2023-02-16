@@ -67,6 +67,35 @@ export class WorkoutHistory extends Component {
     this.setState({ workouts: updatedWorkouts });
   };
 
+  handleDeleteExercise = (exerciseID, workoutID) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this exercise?"
+    );
+    if (confirmDelete) {
+      axios
+        .delete(apiUrl + "/workout/" + workoutID + "/exercises/" + exerciseID)
+        .then((response) => {
+          // Filter the exercises for the workout that was modified
+          const updatedExercises = this.state.workouts
+            .find((workout) => workout._id === workoutID)
+            .exercises.filter((exercise) => exercise._id !== exerciseID);
+
+          const updatedWorkouts = [...this.state.workouts];
+
+          // Find the index of the workout that was modified and update the exercises array for the modified workout
+          const workoutIndex = updatedWorkouts.findIndex(
+            (workout) => workout._id === workoutID
+          );
+          updatedWorkouts[workoutIndex].exercises = updatedExercises;
+
+          this.setState({ workouts: updatedWorkouts });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
   render() {
     const workoutList = this.state.workouts.map((workout, index) => {
       return (
@@ -75,6 +104,7 @@ export class WorkoutHistory extends Component {
             workout={workout}
             handleDeleteWorkout={this.handleDeleteWorkout}
             handleEditWorkout={this.handleEditWorkout}
+            handleDeleteExercise={this.handleDeleteExercise}
           />
         </div>
       );

@@ -32,9 +32,6 @@ class WorkoutHistoryItem extends Component {
                   workout={this.props.workout}
                   handleEditWorkout={this.props.handleEditWorkout}
                 />
-                {/* <div className="btn" onClick={this.props.handleEditWorkout}>
-                        <i className="fas fa-gear"></i>
-                    </div> */}
                 <div
                   className="btn"
                   onClick={() =>
@@ -50,9 +47,12 @@ class WorkoutHistoryItem extends Component {
             {this.props.workout.exercises.map((exercise, index) => (
               <ListGroup.Item key={index}>
                 <ExerciseHistory
+                  workoutID={this.props.workout._id}
+                  exercise={exercise}
                   exerciseName={exercise.name}
                   weight={exercise.weight}
                   reps={exercise.reps}
+                  handleDeleteExercise={this.props.handleDeleteExercise}
                 />
               </ListGroup.Item>
             ))}
