@@ -39,11 +39,13 @@ class ProfilePicChanger extends Component {
 						/>
 					</Col>
 				</Row>
-				<Row className="justify-content-md-center">
-					<Col md="auto">
-						<h2>Usman</h2>
-					</Col>
-				</Row>
+				{this.props.isLoggedIn && (
+					<Row className="justify-content-md-center">
+						<Col md="auto">
+							<h3>{this.props.username}</h3>
+						</Col>
+					</Row>
+				)}
 				<Row className="justify-content-md-center">
 					<Col
 						md="auto"

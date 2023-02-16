@@ -6,7 +6,6 @@ class Workout extends Component {
     render() {
         return(
             <Container>
-                <h1>Workout Page</h1>
                 <WorkoutContainer />
             </Container>
         );
