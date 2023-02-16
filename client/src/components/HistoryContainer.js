@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 
 function HistoryContainer(props) {
   return (
-    <div>
+    <div className="historyContainerDiv">
       <Container>
         <Row>
           <Col xs={6}>
