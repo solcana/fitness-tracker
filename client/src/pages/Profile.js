@@ -5,10 +5,12 @@ import HistoryContainer from "../components/HistoryContainer";
 class Profile extends Component {
   render() {
     return (
-      <Container>
-        <h3>Profile Page</h3>
-        <HistoryContainer userID={this.props.userID}/>
-      </Container>
+      <div className="workoutPageContainerDiv">
+        <Container>
+          <h3>Profile Page</h3>
+          <HistoryContainer userID={this.props.userID} />
+        </Container>
+      </div>
     );
   }
 }
