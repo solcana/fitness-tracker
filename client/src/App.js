@@ -13,34 +13,40 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			username: "",
-			isLoggedIn: false,
+			username: localStorage.getItem("username") || "",
+			isLoggedIn: localStorage.getItem("isLoggedIn") || false,
 		};
 	}
 
 	handleLogin = (username) => {
-		this.setState({ username });
+		this.setState({ username, isLoggedIn: true });
+		localStorage.setItem("username", username);
+		localStorage.setItem("isLoggedIn", true);
 	};
 
 	handleLogout = () => {
 		// Remove the token from local storage and update the state
 		localStorage.removeItem("token");
 		this.setState({ username: "", isLoggedIn: false });
+		localStorage.removeItem("username");
+		localStorage.removeItem("isLoggedIn");
 	};
 
 	render() {
+		const { isLoggedIn, username } = this.state;
+
 		return (
 			<>
 				<NavBar
-					username={this.state.username}
-					isLoggedIn={this.state.isLoggedIn}
+					isLoggedIn={isLoggedIn}
+					username={username}
 					onLogout={this.handleLogout}
 				/>
 				<Routes>
 					{/* <Route exact path="/" element={<Login />} /> */}
 					<Route
 						path="/profile"
-						element={<Profile />}
+						element={<Profile username={this.state.username} />}
 					/>
 					<Route
 						path="/workout"
