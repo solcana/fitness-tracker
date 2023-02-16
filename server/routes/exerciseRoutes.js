@@ -18,7 +18,7 @@ router.get("/api/workout", (req, res) => {
   // Get the user id from the query parameter
   const userId = req.query.user;
 
-  if(userId) {
+  if (userId) {
     // Use the workout model imported above to find workouts with the given user id
     Workout.find({ user: userId })
       // Return matching workouts as an array
@@ -127,13 +127,13 @@ router.patch("/api/workout/:id", (req, res) => {
       }
     })
     .then(() => {
-		// Retrieve the updated workout object from the database
-		return Workout.findById(req.params.id);
-	  })
-	  .then((updatedWorkout) => {
-		// Return the updated workout object in the response
-		res.json({ workout: updatedWorkout });
-	  })
+      // Retrieve the updated workout object from the database
+      return Workout.findById(req.params.id);
+    })
+    .then((updatedWorkout) => {
+      // Return the updated workout object in the response
+      res.json({ workout: updatedWorkout });
+    })
     // catch any errors that might occur
     .catch((error) => {
       res.status(500).json({ error: error });
