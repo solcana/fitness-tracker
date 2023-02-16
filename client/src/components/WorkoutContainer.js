@@ -77,7 +77,7 @@ class WorkoutContainer extends Component {
   componentDidMount = () => {
     // Get all workouts and select ID as last entry in database             // MAYBE CHANGE LATER TO BE LATEST CreatedAt DATE?
     axios
-      .get(apiUrl + "/workout")
+      .get(apiUrl + `/workout?user=${this.props.userID}`)
       .then((response) => {
         const latestWorkout =
           response.data.workouts[response.data.workouts.length - 1];
