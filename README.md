@@ -14,8 +14,7 @@
 2. Profile Page / Dashboard (once logged in)
 3. Workout Page (MODEL e.g. type of exercise: string, reps: number, weight: number .....)
 4. General Blog/Article Page (e.g. food, workout tips etc.)
-    - Weight, water, calories intake, body measurements (MODEL e.g. weight: number, calories: number .....)
-
+   - Weight, water, calories intake, body measurements (MODEL e.g. weight: number, calories: number .....)
 
 #### Wireframes
 
@@ -24,7 +23,6 @@
 ![Wireframe for Profile/Dashboard](/assets/Images/Profile_Dashboard.png)
 
 ![Wireframe for Exercise Page](/assets/Images/Workout%20Page.png)
-
 
 #### User Stories
 
@@ -44,9 +42,3 @@
 #### ERD
 
 ![Entity Relationship Diagram](/assets/Images/ERD.png)
-
-
-## To DO
-
-- [ ] Add delete for exercises
-- [ ] Fix login for hashed password authentication
