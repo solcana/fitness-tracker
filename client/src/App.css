@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 /* .weightAndReps {
   width: 100px;
   display: flex;
@@ -15,13 +16,35 @@
   width: 60px;
   text-align: center;
   margin: 3px;
+  font-size: 16px;
 }
-.historyContainerDiv {
+.historyContainerDiv,
+.workoutPageContainerDiv {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
 }
-.historyContainer {
-  background-color: rgb(244, 240, 240);
+.historyContainer,
+.workoutPageContainer {
+  background-color: rgb(244, 242, 242);
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: "Bebas Neue", cursive;
+  font-size: 18px;
+}
+
+.workoutPageContainerDiv {
+  margin: 45px auto;
+}
+
+.btnsWorkoutPage {
+  margin: 10px;
+}
+.NavBar {
+  font-family: "Bebas Neue", cursive;
+  font-size: 19px;
+}
+.profilePage {
+  font-family: "Bebas Neue", cursive;
 }

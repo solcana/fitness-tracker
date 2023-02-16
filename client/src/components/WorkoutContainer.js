@@ -99,7 +99,7 @@ class WorkoutContainer extends Component {
       <>
         <ToastContainer />
 
-        <div className="d-flex justify-content-center m-3">
+        <div className="d-flex justify-content-center btnsWorkoutPage">
           <Button onClick={this.handleAddWorkout}>Start New Workout</Button>
         </div>
 
@@ -108,7 +108,7 @@ class WorkoutContainer extends Component {
         )}
 
         {/* {this.state.activeWorkoutExercises && this.state.activeWorkoutExercises[2] && <p>Here is the ID: {this.state.activeWorkoutExercises[2]._id}</p>} */}
-        <div className="d-flex justify-content-center m-3">
+        <div className="d-flex justify-content-center btnsWorkoutPage">
           <ExerciseInputModal
             onAddExercise={this.handleAddExercise}
             latestWorkoutId={this.state.latestWorkoutId}

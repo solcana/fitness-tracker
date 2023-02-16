@@ -15,8 +15,8 @@ import apiUrl from "./apiConfig";
 
 
 class ProfilePicChanger extends Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
 		this.state = {
 			profileImage: "",
@@ -24,11 +24,11 @@ class ProfilePicChanger extends Component {
 		};
 	}
 
-	handleImageChange = (profileImage) => {
-		this.setState({
-			profileImage: profileImage,
-		});
-	};
+  handleImageChange = (profileImage) => {
+    this.setState({
+      profileImage: profileImage,
+    });
+  };
 
 	componentDidMount() {
 	axios.get(apiUrl + `/workout?user=${this.props.userID}`)
