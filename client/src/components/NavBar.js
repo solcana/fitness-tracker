@@ -77,7 +77,7 @@ class NavBar extends Component {
 						</Nav>
 						{this.state.isLoggedIn && (
 							<Navbar.Text>
-								Signed in as: <a href="#login">{this.state.username}</a>
+								Signed in as: <a href="#login">{this.props.username}</a>
 							</Navbar.Text>
 						)}
 					</Navbar.Collapse>
