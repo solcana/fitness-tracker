@@ -8,17 +8,12 @@ import Col from "react-bootstrap/Col";
 function HistoryContainer(props) {
   return (
     <div className="historyContainerDiv">
-      <Container>
-        <Row>
-          <Col xs={6}>
-            <Card body className="historyContainer" border="secondary">
-              <WorkoutHistory userID={props.userID}/>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+      <Card body className="historyContainer" border="secondary">
+        <WorkoutHistory userID={props.userID}/>
+      </Card>
     </div>
   );
 }
 
 export default HistoryContainer;
+
