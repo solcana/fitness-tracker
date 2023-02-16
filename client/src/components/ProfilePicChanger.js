@@ -20,7 +20,8 @@ class ProfilePicChanger extends Component {
 
 		this.state = {
 			profileImage: "",
-			totalWorkouts: 0,
+			totalWorkouts: "Calculating...",
+			totalExercises: "Calculating..."
 		};
 	}
 
@@ -35,17 +36,19 @@ class ProfilePicChanger extends Component {
 		.then(response => {
 		const workouts = response.data.workouts;
 		const totalWorkouts = workouts.length;
+		let totalExercises = 0;
+        workouts.forEach(workout => {
+          totalExercises += workout.exercises.length;
+        });
 	
 		this.setState({
-			// workouts: workouts,
+			totalExercises: totalExercises,
 			totalWorkouts: totalWorkouts,
-			// loading: false,
 		});
 		})
 		.catch(error => {
 		console.log(error);
 		this.setState({
-			// loading: false,
 			error: "Failed to fetch workouts",
 		});
 		});
@@ -53,9 +56,9 @@ class ProfilePicChanger extends Component {
 
 	render() {
 		return (
-			<Container className="my-3">
-				<Row className="justify-content-md-center">
-					<Col md="auto">
+			<Container className="my-3 d-flex flex-column">
+				<Row className="d-flex justify-content-center align-items-center">
+					<Col md="auto" className="d-flex justify-content-center">
 						<Avatar
 							size={64}
 							icon={<UserOutlined />}
@@ -64,8 +67,8 @@ class ProfilePicChanger extends Component {
 					</Col>
 				</Row>
 				{this.props.isLoggedIn && (
-					<Row className="justify-content-md-center">
-						<Col md="auto">
+					<Row className="d-flex justify-content-md-center">
+						<Col md="auto" className="d-flex justify-content-center">
 							<h3>{this.props.username}</h3>
 						</Col>
 					</Row>
@@ -79,7 +82,7 @@ class ProfilePicChanger extends Component {
 								Total Workouts: {this.state.totalWorkouts}
 							</ListGroupItem>
 							<ListGroupItem className="list-item">
-								Workouts this week: 5
+								Total Exercises: {this.state.totalExercises}
 							</ListGroupItem>
 						</ListGroup>
 						<ProfilePicModal
