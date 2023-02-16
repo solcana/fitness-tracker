@@ -42,28 +42,14 @@ mongoose.connection.once("open", () => {
       if (err) {
         console.log(err);
       } else {
-        User.findOne({ username: "Usman1" }, (err, user) => {
-          if (err) {
-            console.error(err);
-            mongoose.connection.close();
-          } else {
-            // Update the user's workouts array with the ids of the workouts you want to associate with them
-            const workoutIds = workouts.map((workout) => workout._id);
-            user.workouts = workoutIds;
-            user.save((err, updatedUser) => {
-              if (err) {
-                console.error(err);
-              } else {
-                console.log("associated workouts with user", updatedUser);
-              }
-              mongoose.connection.close();
-            });
-          }
-        });
+        console.log("added user seed data", users);
       }
+
+      mongoose.connection.close();
     });
   });
 });
+
 /**
  * Testing individual entries into database
  */
