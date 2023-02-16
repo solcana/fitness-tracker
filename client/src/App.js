@@ -48,6 +48,7 @@ class App extends Component {
 					<Route
 						path="/profile"
 						element={<Profile 	username={this.state.username}
+											isLoggedIn={this.state.isLoggedIn}
 											userID={this.state.userID} />}
 					/>
 					<Route
@@ -64,6 +65,7 @@ class App extends Component {
 							<ProfilePicChanger
 								username={this.state.username}
 								isLoggedIn={this.state.isLoggedIn}
+								userID={this.state.userID}
 							/>
 						}
 					/>

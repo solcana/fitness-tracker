@@ -10,6 +10,9 @@ import ProfilePicModal from "./ProfilePicModal";
 import usman_pic from "../userImage/usman_pic.png";
 import Coffee from "../userImage/Coffee.jpg";
 import coffeeheart from "../userImage/coffeeheart.jpg";
+import axios from "axios";
+import apiUrl from "./apiConfig";
+
 
 class ProfilePicChanger extends Component {
 	constructor(props) {
@@ -17,6 +20,7 @@ class ProfilePicChanger extends Component {
 
 		this.state = {
 			profileImage: "",
+			totalWorkouts: 0,
 		};
 	}
 
@@ -26,12 +30,32 @@ class ProfilePicChanger extends Component {
 		});
 	};
 
+	componentDidMount() {
+	axios.get(apiUrl + `/workout?user=${this.props.userID}`)
+		.then(response => {
+		const workouts = response.data.workouts;
+		const totalWorkouts = workouts.length;
+	
+		this.setState({
+			// workouts: workouts,
+			totalWorkouts: totalWorkouts,
+			// loading: false,
+		});
+		})
+		.catch(error => {
+		console.log(error);
+		this.setState({
+			// loading: false,
+			error: "Failed to fetch workouts",
+		});
+		});
+	}
+
 	render() {
 		return (
-			<Container>
+			<Container className="my-3">
 				<Row className="justify-content-md-center">
 					<Col md="auto">
-						<h3>Hello</h3>
 						<Avatar
 							size={64}
 							icon={<UserOutlined />}
@@ -52,7 +76,7 @@ class ProfilePicChanger extends Component {
 						className="text-center">
 						<ListGroup className="list-group-flush">
 							<ListGroupItem className="list-item">
-								Total Workouts: 1000
+								Total Workouts: {this.state.totalWorkouts}
 							</ListGroupItem>
 							<ListGroupItem className="list-item">
 								Workouts this week: 5
