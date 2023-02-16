@@ -10,7 +10,6 @@ class NavBar extends Component {
 
 		this.state = {
 			isLoggedIn: false,
-			username: "",
 		};
 	}
 
@@ -25,6 +24,12 @@ class NavBar extends Component {
 		const token = localStorage.getItem("token");
 		if (token) {
 			this.setState({ isLoggedIn: true });
+		}
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.username !== prevProps.username) {
+			console.log("Username prop updated:", this.props.username);
 		}
 	}
 
@@ -77,7 +82,7 @@ class NavBar extends Component {
 						</Nav>
 						{this.state.isLoggedIn && (
 							<Navbar.Text>
-								Signed in as: <a href="#login">{this.props.username}</a>
+								Signed in as: <a href="#">{this.props.username}</a>
 							</Navbar.Text>
 						)}
 					</Navbar.Collapse>

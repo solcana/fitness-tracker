@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Container, Form, Button } from 'react-bootstrap';
 
 function Graph() {
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('workoutData');
+    if (storedData) {
+      setData(JSON.parse(storedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('workoutData', JSON.stringify(data));
+  }, [data]);
 
   const handleAddData = (e) => {
     e.preventDefault();

@@ -14,16 +14,15 @@ class ExerciseInputModal extends Component {
     super(props);
     this.state = {
       show: false,
-      exerciseName: "",
-      exerciseWeight: "",
-      exerciseReps: "",
+      name: "",
+      weight: "",
+      reps: "",
     };
   }
 
   handleShow = () => {
     this.setState({ show: true });
-    console.log(apiUrl + "/workout");
-    axios.get(apiUrl + "/workout").then((res) => console.log(res));
+    axios.get(apiUrl + "/workout");
   };
 
   handleClose = () => {
@@ -44,9 +43,9 @@ class ExerciseInputModal extends Component {
 
   handleAddExercise = () => {
     const exercise = {
-      exerciseName: this.state.exerciseName,
-      exerciseWeight: this.state.exerciseWeight,
-      exerciseReps: this.state.exerciseReps,
+      name: this.state.exerciseName,
+      weight: this.state.exerciseWeight,
+      reps: this.state.exerciseReps,
     };
 
     this.props.onAddExercise(exercise);
