@@ -5,14 +5,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function HistoryContainer() {
+function HistoryContainer(props) {
   return (
     <div>
       <Container>
         <Row>
           <Col xs={6}>
             <Card body className="historyContainer" border="secondary">
-              <WorkoutHistory />
+              <WorkoutHistory userID={props.userID}/>
             </Card>
           </Col>
         </Row>
