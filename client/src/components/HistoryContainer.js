@@ -6,7 +6,7 @@ function HistoryContainer(props) {
   return (
     <div className="historyContainerDiv">
       <Card body className="historyContainer" border="secondary">
-        <WorkoutHistory />
+        <WorkoutHistory userID={props.userID} />
       </Card>
     </div>
   );
