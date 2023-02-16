@@ -36,51 +36,52 @@ class App extends Component {
   render() {
     const { isLoggedIn, username } = this.state;
 
-    return (
-      <>
-        <NavBar
-          isLoggedIn={isLoggedIn}
-          username={username}
-          onLogout={this.handleLogout}
-        />
-        <Routes>
-          {/* <Route exact path="/" element={<Login />} /> */}
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                username={this.state.username}
-                userID={this.state.userID}
-              />
-            }
-          />
-          <Route
-            path="/workout"
-            element={<Workout userID={this.state.userID} />}
-          />
-          <Route path="/graph-statistics" element={<GraphStatistics />} />
-          <Route
-            path="/profile-picture"
-            element={
-              <ProfilePicChanger
-                username={this.state.username}
-                isLoggedIn={this.state.isLoggedIn}
-              />
-            }
-          />
-          <Route
-            path="/user"
-            element={
-              <UserLogin
-                onLogin={this.handleLogin}
-                onLogout={this.handleLogout}
-              />
-            }
-          />
-        </Routes>
-      </>
-    );
-  }
+		return (
+			<>
+				<NavBar
+					isLoggedIn={isLoggedIn}
+					username={username}
+					onLogout={this.handleLogout}
+				/>
+				<Routes>
+					{/* <Route exact path="/" element={<Login />} /> */}
+					<Route
+						path="/profile"
+						element={<Profile 	username={this.state.username}
+											isLoggedIn={this.state.isLoggedIn}
+											userID={this.state.userID} />}
+					/>
+					<Route
+						path="/workout"
+						element={<Workout userID={this.state.userID}/>}
+					/>
+					<Route
+						path="/graph-statistics"
+						element={<GraphStatistics />}
+					/>
+					<Route
+						path="/profile-picture"
+						element={
+							<ProfilePicChanger
+								username={this.state.username}
+								isLoggedIn={this.state.isLoggedIn}
+								userID={this.state.userID}
+							/>
+						}
+					/>
+					<Route
+						path="/user"
+						element={
+							<UserLogin
+								onLogin={this.handleLogin}
+								onLogout={this.handleLogout}
+							/>
+						}
+					/>
+				</Routes>
+			</>
+		);
+	}
 }
 
 export default App;
