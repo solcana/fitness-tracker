@@ -19,6 +19,10 @@ const workoutSchema = new mongoose.Schema(
     startDate: String,
     completed: { type: Boolean, default: false },
     exercises: [exerciseSchema],
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
   },
   { timestamps: true }
 );

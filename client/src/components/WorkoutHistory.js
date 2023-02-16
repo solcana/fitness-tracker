@@ -19,7 +19,7 @@ export class WorkoutHistory extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5001/api/workout")
+      .get(`http://localhost:5001/api/workout`)
       .then((response) => {
         this.setState({ workouts: response.data.workouts });
       })

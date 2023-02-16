@@ -110,7 +110,7 @@ app.post("/api/login", (req, res) => {
       const token = jwt.sign(payload, jwtOptions.secretOrKey, {
         expiresIn: 600,
       });
-      res.status(200).json({ success: true, token: token });
+      res.status(200).json({ success: true, token: token, user: user });
     });
   } else {
     res.status(400).json({ error: "Username & Password Required" });

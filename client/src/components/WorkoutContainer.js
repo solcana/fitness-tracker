@@ -39,7 +39,8 @@ class WorkoutContainer extends Component {
         .post(apiUrl + `/workout/`, {
           "workout":
               {
-                  "exercises": []
+                  "exercises": [],
+                  "user": this.props.userID
               }
         })
         .then((response) => {
