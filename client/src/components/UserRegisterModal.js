@@ -89,7 +89,7 @@ class UserRegisterModal extends Component {
 				console.log("Registration successful");
 				// Redirect the user to the home page after a delay of 2 seconds
 				setTimeout(() => {
-					window.location = "/profile";
+					window.location = "/user";
 				}, 2000);
 			})
 
