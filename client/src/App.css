@@ -23,8 +23,6 @@
   background-color: rgb(244, 242, 242);
   max-width: 600px;
   margin: 0 auto;
-
-  font-size: 18px;
 }
 
 .workoutPageContainerDiv {
@@ -37,4 +35,7 @@
 .NavBar {
   font-family: "Bebas Neue", cursive;
   font-size: 19px;
+}
+#FitnessTrackerId {
+  font-size: 30px;
 }

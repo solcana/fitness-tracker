@@ -43,7 +43,9 @@ class NavBar extends Component {
         className="NavBar"
       >
         <Container>
-          <Navbar.Brand href="/profile">Fitness Tracker</Navbar.Brand>
+          <Navbar.Brand href="/profile" id="FitnessTrackerId">
+            Fitness Tracker
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
