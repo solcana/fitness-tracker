@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Button, Modal } from "antd";
 import { Container } from "react-bootstrap";
 import usman_pic from "../userImage/usman_pic.png";
-import Coffee from "../userImage/Coffee.jpg";
-import coffeeheart from "../userImage/coffeeheart.jpg";
+import hotPink from "../userImage/hotPink.png";
+import popcorn from "../userImage/popcorn.png";
 
 class ProfilePicModal extends Component {
 	constructor(props) {
@@ -11,7 +11,7 @@ class ProfilePicModal extends Component {
 
 		this.state = {
 			open: false,
-			imagesArray: [props.usman_pic, props.Coffee, props.coffeeheart],
+			imagesArray: [props.usman_pic, props.hotPink, props.popcorn],
 		};
 	}
 
@@ -50,7 +50,7 @@ class ProfilePicModal extends Component {
 					open={this.state.open}
 					onOk={this.handleOk}
 					onCancel={this.handleCancel}>
-					<p>I like to eat lots of popcorn...</p>
+					<p>I love popcorn, hotPink and coding</p>
 					<p>Am all about the gainz...</p>
 					<p>Usman for the next Strongman...</p>
 					<div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -61,16 +61,16 @@ class ProfilePicModal extends Component {
 							onClick={() => this.selectProfileImage(usman_pic)}
 						/>
 						<img
-							src={Coffee}
-							alt="Coffee"
+							src={hotPink}
+							alt="Hot pink latte"
 							style={{ width: "20%", height: "auto", cursor: "pointer" }}
-							onClick={() => this.selectProfileImage(Coffee)}
+							onClick={() => this.selectProfileImage(hotPink)}
 						/>
 						<img
-							src={coffeeheart}
-							alt="coffeeheart"
+							src={popcorn}
+							alt="popcorn"
 							style={{ width: "20%", height: "auto", cursor: "pointer" }}
-							onClick={() => this.selectProfileImage(coffeeheart)}
+							onClick={() => this.selectProfileImage(popcorn)}
 						/>
 					</div>
 				</Modal>

@@ -9,31 +9,32 @@ import ProfilePicChanger from "./components/ProfilePicChanger";
 import UserLogin from "./components/UserLogin";
 
 class App extends Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			username: localStorage.getItem("username") || "",
-			isLoggedIn: localStorage.getItem("isLoggedIn") || false,
-		};
-	}
+    this.state = {
+      username: localStorage.getItem("username") || "",
+      isLoggedIn: localStorage.getItem("isLoggedIn") || false,
+      userID: localStorage.getItem("userID") || "",
+    };
+  }
 
-	handleLogin = (username) => {
-		this.setState({ username, isLoggedIn: true });
-		localStorage.setItem("username", username);
-		localStorage.setItem("isLoggedIn", true);
-	};
+  handleLogin = (username) => {
+    this.setState({ username, isLoggedIn: true });
+    localStorage.setItem("username", username);
+    localStorage.setItem("isLoggedIn", true);
+  };
 
-	handleLogout = () => {
-		// Remove the token from local storage and update the state
-		localStorage.removeItem("token");
-		this.setState({ username: "", isLoggedIn: false });
-		localStorage.removeItem("username");
-		localStorage.removeItem("isLoggedIn");
-	};
+  handleLogout = () => {
+    // Remove the token from local storage and update the state
+    localStorage.removeItem("token");
+    this.setState({ username: "", isLoggedIn: false });
+    localStorage.removeItem("username");
+    localStorage.removeItem("isLoggedIn");
+  };
 
-	render() {
-		const { isLoggedIn, username } = this.state;
+  render() {
+    const { isLoggedIn, username } = this.state;
 
 		return (
 			<>
@@ -46,11 +47,13 @@ class App extends Component {
 					{/* <Route exact path="/" element={<Login />} /> */}
 					<Route
 						path="/profile"
-						element={<Profile username={this.state.username} />}
+						element={<Profile 	username={this.state.username}
+											isLoggedIn={this.state.isLoggedIn}
+											userID={this.state.userID} />}
 					/>
 					<Route
 						path="/workout"
-						element={<Workout />}
+						element={<Workout userID={this.state.userID}/>}
 					/>
 					<Route
 						path="/graph-statistics"
@@ -58,7 +61,13 @@ class App extends Component {
 					/>
 					<Route
 						path="/profile-picture"
-						element={<ProfilePicChanger />}
+						element={
+							<ProfilePicChanger
+								username={this.state.username}
+								isLoggedIn={this.state.isLoggedIn}
+								userID={this.state.userID}
+							/>
+						}
 					/>
 					<Route
 						path="/user"

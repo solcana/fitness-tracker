@@ -15,16 +15,32 @@ const router = express.Router();
  * Description:    Get All workouts (what the route is going to do)
  */
 router.get("/api/workout", (req, res) => {
-  //use the workout model imported above
-  Workout.find()
-    //return all articles as an array
-    .then((workouts) => {
-      res.status(200).json({ workouts: workouts });
-    })
-    //Catch any errors that might occur
-    .catch((error) => {
-      res.status(500).json({ error: error });
-    });
+  // Get the user id from the query parameter
+  const userId = req.query.user;
+
+  if (userId) {
+    // Use the workout model imported above to find workouts with the given user id
+    Workout.find({ user: userId })
+      // Return matching workouts as an array
+      .then((workouts) => {
+        res.status(200).json({ workouts: workouts });
+      })
+      // Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      });
+  } else {
+    //use the workout model imported above
+    Workout.find()
+      //return all articles as an array
+      .then((workouts) => {
+        res.status(200).json({ workouts: workouts });
+      })
+      //Catch any errors that might occur
+      .catch((error) => {
+        res.status(500).json({ error: error });
+      });
+  }
 });
 
 /**
@@ -111,13 +127,13 @@ router.patch("/api/workout/:id", (req, res) => {
       }
     })
     .then(() => {
-		// Retrieve the updated workout object from the database
-		return Workout.findById(req.params.id);
-	  })
-	  .then((updatedWorkout) => {
-		// Return the updated workout object in the response
-		res.json({ workout: updatedWorkout });
-	  })
+      // Retrieve the updated workout object from the database
+      return Workout.findById(req.params.id);
+    })
+    .then((updatedWorkout) => {
+      // Return the updated workout object in the response
+      res.json({ workout: updatedWorkout });
+    })
     // catch any errors that might occur
     .catch((error) => {
       res.status(500).json({ error: error });

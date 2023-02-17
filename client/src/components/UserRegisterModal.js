@@ -89,7 +89,7 @@ class UserRegisterModal extends Component {
 				console.log("Registration successful");
 				// Redirect the user to the home page after a delay of 2 seconds
 				setTimeout(() => {
-					window.location = "/profile";
+					window.location = "/user";
 				}, 2000);
 			})
 
@@ -139,6 +139,7 @@ class UserRegisterModal extends Component {
 									<FormControl
 										type="text"
 										placeholder="First Name"
+										value={this.state.firstname}
 										onChange={this.onChangeFirstName}
 									/>
 								</InputGroup>
@@ -151,6 +152,7 @@ class UserRegisterModal extends Component {
 									<FormControl
 										type="text"
 										placeholder="Last Name"
+										value={this.state.lastname}
 										onChange={this.onChangeLastName}
 									/>
 								</InputGroup>
@@ -164,6 +166,7 @@ class UserRegisterModal extends Component {
 									<FormControl
 										type="text"
 										placeholder="Enter Username"
+										value={this.state.username}
 										onChange={this.onChangeUsername}
 									/>
 								</InputGroup>
@@ -177,6 +180,7 @@ class UserRegisterModal extends Component {
 									<FormControl
 										type="password"
 										placeholder="Enter Password"
+										value={this.state.password}
 										onChange={this.onChangePassword}
 									/>
 								</InputGroup>
