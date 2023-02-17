@@ -112,6 +112,7 @@ class UserLogin extends Component {
 						<Form.Control
 							type="text"
 							placeholder="Enter username"
+							value={this.state.username}
 							onChange={this.onChangeUsername}
 						/>
 						<Form.Text className="text-muted">
@@ -126,6 +127,7 @@ class UserLogin extends Component {
 						<Form.Control
 							type="password"
 							placeholder="Password"
+							value={this.state.password}
 							onChange={this.onChangePassword}
 						/>
 					</Form.Group>
