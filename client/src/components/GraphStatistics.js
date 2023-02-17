@@ -9,6 +9,8 @@ function Graph() {
     const storedData = localStorage.getItem('workoutData');
     if (storedData) {
       setData(JSON.parse(storedData));
+    } else {
+      setData([]);
     }
   }, []);
 
@@ -68,7 +70,8 @@ function Graph() {
           <Legend />
           <Line type="monotone" dataKey="pushUps" stroke="#8884d8" activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="pullUps" stroke="#82ca9d" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="sitUps" stroke="#ffc658" activeDot={{ r: 8 }} />
+          <Line
+type="monotone" dataKey="sitUps" stroke="#ffc658" activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="benchPress" stroke="#ff7300" activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="squats" stroke="#00bcd4" activeDot={{ r: 8 }} />
         </LineChart>
