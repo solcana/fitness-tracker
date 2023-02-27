@@ -39,4 +39,5 @@ processes = []
   [build]
     command = "npm run build"
     publish = "dist"
-
+    builder = "paketobuildpacks/builder:base"
+    buildpacks = ["gcr.io/paketo-buildpacks/nodejs"]

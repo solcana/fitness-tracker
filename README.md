@@ -42,3 +42,8 @@
 #### ERD
 
 ![Entity Relationship Diagram](/assets/Images/ERD.png)
+
+#### Trello - Project Management
+
+<img width="1399" alt="Screenshot 2023-02-17 at 09 20 43" src="https://user-images.githubusercontent.com/114579141/219604711-a7f46696-10e2-485e-93d4-acba3c634a4c.png">
+
