@@ -8,11 +8,12 @@ class Profile extends Component {
     return (
       <div className="workoutPageContainerDiv">
         <Container>
-          <ProfilePicChanger 
-          username={this.props.username}
-          isLoggedIn={this.props.isLoggedIn}
-          userID={this.props.userID} />
-          <HistoryContainer userID={this.props.userID}  />
+          <ProfilePicChanger
+            username={this.props.username}
+            isLoggedIn={this.props.isLoggedIn}
+            userID={this.props.userID}
+          />
+          <HistoryContainer userID={this.props.userID} />
         </Container>
       </div>
     );
